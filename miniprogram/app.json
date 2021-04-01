@@ -1,4 +1,10 @@
 {
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-image": "@vant/weapp/image/index"
+  },
   "pages": [
     "pages/index/index",
     "pages/userConsole/userConsole",
@@ -21,6 +27,5 @@
     "navigationBarTitleText": "云开发 QuickStart",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "sitemapLocation": "sitemap.json"
 }

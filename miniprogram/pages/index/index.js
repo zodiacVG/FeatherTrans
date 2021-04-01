@@ -10,7 +10,10 @@ Page({
     takeSession: false,
     requestResult: '',
     canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') // 如需尝试获取用户信息可改为false
+    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl'), // 如需尝试获取用户信息可改为false,
+    pop_show:false, //弹窗的显示控制
+    textValue:"",
+    jpg_source:""
   },
 
   onLoad: function() {
@@ -120,5 +123,37 @@ Page({
       }
     })
   },
+  
+  downFile:function(e){
+    this.setData({
+      pop_show:true
+    })
+  },
+
+  onChange_text(event){
+    this.setData({
+      textValue:event.detail
+    }),
+    console.log(this.data.textValue)
+  },
+
+  comfirmFile(){
+    console.log('call comfirmFile')
+    wx.cloud.downloadFile({
+      fileID: this.data.textValue, // 文件 ID
+      success: res => {
+        // 返回临时文件路径
+        console.log(res.tempFilePath)
+        this.setData({
+          jpg_source:res.tempFilePath
+        })
+      },
+      fail: console.error
+    })
+  },
+  
+  onClose(){
+    console.log('close')
+  }
 
 })

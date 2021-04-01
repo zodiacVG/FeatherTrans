@@ -10,6 +10,7 @@
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
+		"nodeModules": true,
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
@@ -22,7 +23,14 @@
 			"outputPath": ""
 		},
 		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"packNpmManually": true,
+		"packNpmRelationList": [
+			{
+				"packageJsonPath": "./package.json",
+				"miniprogramNpmDistDir": "./miniprogram/"
+			}
+		]
 	},
 	"appid": "wxa3f34287aa6b52fa",
 	"projectname": "SoftwareEngineeProject",
