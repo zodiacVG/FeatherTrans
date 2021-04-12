@@ -7,6 +7,16 @@ page {
   justify-content: flex-start;
 }
 
+#uploadButton{
+  margin-bottom: 20px;
+}
+#downloadButton{
+  margin-top: 20px;
+  background-color: aquamarine;
+}
+
+
+/* 
 .userinfo, .uploader, .tunnel {
   margin-top: 40rpx;
   height: 140rpx;
@@ -158,4 +168,4 @@ page {
   font-size: 24rpx;
   line-height: 36rpx;
   word-break: break-all;
-}
+} */
