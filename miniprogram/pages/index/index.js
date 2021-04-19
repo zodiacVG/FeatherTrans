@@ -13,7 +13,19 @@ Page({
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl'), // 如需尝试获取用户信息可改为false,
     pop_show:false, //弹窗的显示控制
     textValue:"",
-    jpg_source:""
+    jpg_source:"",
+    actionSheetShow: false,
+    actions: [
+      {
+        name: '从手机相册选择',
+      },
+      {
+        name: '选项2',
+      },
+      {
+        name: '选项3',
+      },
+    ],
   },
 
   onLoad: function() {
@@ -91,7 +103,7 @@ Page({
         const filePath = res.tempFilePaths[0]
         
         // 上传图片
-        const cloudPath = `my-image${filePath.match(/\.[^.]+?$/)[0]}`
+        const cloudPath = `my-images${filePath.match(/\.[^.]+?$/)[0]}`
         wx.cloud.uploadFile({
           cloudPath,
           filePath,
@@ -101,9 +113,9 @@ Page({
             app.globalData.fileID = res.fileID
             app.globalData.cloudPath = cloudPath
             app.globalData.imagePath = filePath
-            
+            console.log('filepath'+filePath)
             wx.navigateTo({
-              url: '../storageConsole/storageConsole'
+              url: '../upload_ready/upload_ready?filePath='+filePath
             })
           },
           fail: e => {
@@ -124,6 +136,13 @@ Page({
     })
   },
   
+  tapUploadButton(){
+    this.setData({
+      actionSheetShow:true
+    })
+  },
+
+
   downFile:function(e){
     this.setData({
       pop_show:true
@@ -154,6 +173,18 @@ Page({
   
   onClose(){
     console.log('close')
-  }
+  },
+
+  onCloseActionSheet() {
+    this.setData({ show: false });
+  },
+
+  onSelectActionSheet(event) {
+    console.log(event.detail);
+    var resultFromActionSheet=event.detail;
+    if(resultFromActionSheet.name=="从手机相册选择"){
+      this.doUpload()
+    }
+  },
 
 })

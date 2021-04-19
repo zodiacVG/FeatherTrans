@@ -1,0 +1,3 @@
+<!--miniprogram/pages/upload_ready/upload_ready.wxml-->
+<text>miniprogram/pages/upload_ready/upload_ready.wxml</text>
+<van-image width="100" height="100" src="{{fileSource}}" />
