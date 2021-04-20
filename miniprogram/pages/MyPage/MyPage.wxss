@@ -1,0 +1,4 @@
+/* miniprogram/pages/MyPage/MyPage.wxss */
+.UserPicture{
+  text-align: center;
+}

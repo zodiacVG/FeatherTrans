@@ -1,3 +1,12 @@
 <!--miniprogram/pages/upload_ready/upload_ready.wxml-->
 <text>miniprogram/pages/upload_ready/upload_ready.wxml</text>
 <van-image width="100" height="100" src="{{fileSource}}" />
+<van-cell-group>
+  <van-field
+    lable="密码"
+    model:value="{{ passwordValue }}"
+    placeholder="请输入提取密码"
+    border="{{ false }}"
+  />
+</van-cell-group>
+<van-stepper value="{{ downloadNumLimit }}" step="2" />

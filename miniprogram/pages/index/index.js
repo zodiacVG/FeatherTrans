@@ -193,6 +193,13 @@ Page({
     this.setData({
       activeTab:e.detail
     })
+    console.log(this.activeTab)
+    if(this.data.activeTab==1){
+      console.log('成了！')
+      wx.reLaunch({
+        url: '../MyPage/MyPage',
+      })
+    }
   }
 
 })

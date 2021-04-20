@@ -14,7 +14,10 @@ App({
       })
     }
 
-    this.globalData = {}
+    this.globalData = {
+      logged:false,
+      openid:''
+    }
   },
 
 })

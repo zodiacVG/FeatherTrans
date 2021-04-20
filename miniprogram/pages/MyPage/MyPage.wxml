@@ -1,0 +1,17 @@
+<view wx:if="{{logged==false}}">
+<van-button type="primary" bindtap="getUserProfile">授权登录</van-button>
+</view>
+<view wx:elif="{{logged==true}}">
+<view class="UserPicture">
+<van-image
+  round
+  width="4rem"
+  height="4rem"
+  src="{{userInfo.avatarUrl}}"
+/>
+</view>
+{{userInfo.nickName}}
+已登陆
+
+</view>
+
