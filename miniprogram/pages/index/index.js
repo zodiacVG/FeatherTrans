@@ -3,6 +3,7 @@ const app = getApp()
 
 Page({
   data: {
+    activeTab:0,
     avatarUrl: './user-unlogin.png',
     userInfo: {},
     hasUserInfo: false,
@@ -176,7 +177,8 @@ Page({
   },
 
   onCloseActionSheet() {
-    this.setData({ show: false });
+    console.log('调用了！')
+    this.setData({ actionSheetShow: false });
   },
 
   onSelectActionSheet(event) {
@@ -186,5 +188,11 @@ Page({
       this.doUpload()
     }
   },
+
+  tabOnChange(e){
+    this.setData({
+      activeTab:e.detail
+    })
+  }
 
 })
