@@ -1,6 +1,6 @@
-//index.js
+//index.js 测试git
 const app = getApp()
-
+var _this
 Page({
   data: {
     activeTab:0,
@@ -21,7 +21,7 @@ Page({
         name: '从手机相册选择',
       },
       {
-        name: '选项2',
+        name: '从聊天记录选择',
       },
       {
         name: '选项3',
@@ -30,6 +30,7 @@ Page({
   },
 
   onLoad: function() {
+    _this = this
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
@@ -89,8 +90,36 @@ Page({
     })
   },
 
+  doUpload(filePath){
+    const cloudPath = `my-images${filePath.match(/\.[^.]+?$/)[0]}`
+    wx.cloud.uploadFile({
+      cloudPath,
+      filePath,
+      success: res => {
+        console.log('[上传文件] 成功：', res)
+
+        app.globalData.fileID = res.fileID
+        app.globalData.cloudPath = cloudPath
+        app.globalData.imagePath = filePath
+        console.log('filepath'+filePath)
+        wx.navigateTo({
+          url: '../upload_ready/upload_ready?filePath='+filePath
+        })
+      },
+      fail: e => {
+        console.error('[上传文件] 失败：', e)
+        wx.showToast({
+          icon: 'none',
+          title: '上传失败',
+        })
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
+    })
+  },
   // 上传图片
-  doUpload: function () {
+  chooseByAlbum: function () {
     // 选择图片
     wx.chooseImage({
       count: 1,
@@ -102,34 +131,8 @@ Page({
         })
 
         const filePath = res.tempFilePaths[0]
-        
+        _this.doUpload(filePath)
         // 上传图片
-        const cloudPath = `my-images${filePath.match(/\.[^.]+?$/)[0]}`
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
-
-            app.globalData.fileID = res.fileID
-            app.globalData.cloudPath = cloudPath
-            app.globalData.imagePath = filePath
-            console.log('filepath'+filePath)
-            wx.navigateTo({
-              url: '../upload_ready/upload_ready?filePath='+filePath
-            })
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
       },
       fail: e => {
         console.error(e)
@@ -185,7 +188,17 @@ Page({
     console.log(event.detail);
     var resultFromActionSheet=event.detail;
     if(resultFromActionSheet.name=="从手机相册选择"){
-      this.doUpload()
+      this.chooseByAlbum()
+    }
+    if(resultFromActionSheet.name="从聊天记录选择"){
+      wx.chooseMessageFile({
+        count: 10,
+        type: 'image',
+        success (res) {
+          // tempFilePath可以作为img标签的src属性显示图片
+          const tempFilePaths = res.tempFiles
+        }
+      })
     }
   },
 
