@@ -9,4 +9,5 @@
     border="{{ false }}"
   />
 </van-cell-group>
-<van-stepper value="{{ downloadNumLimit }}" step="2" />
+<van-checkbox value="{{ showTimeLimit }}" bind:change="setTimeLimit">设置下载次数</van-checkbox>
+<van-stepper wx:if="{{showTimeLimit==true}}" value="{{ downloadNumLimit }}" step="2" />
