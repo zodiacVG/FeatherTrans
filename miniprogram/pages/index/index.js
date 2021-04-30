@@ -196,7 +196,7 @@ Page({
       console.log("从聊天记录选择别调用")
       wx.chooseMessageFile({
         count: 10,
-        type: 'image',
+        type: 'all',
         success (res) {
           // tempFilePath可以作为img标签的src属性显示图片
           const tempFilePaths = res.tempFiles[0]

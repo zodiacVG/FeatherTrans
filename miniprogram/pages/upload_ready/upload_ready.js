@@ -8,7 +8,9 @@ Page({
     fileSource:'',
     passwordValue:'',
     downloadNumLimit:0,
-    showTimeLimit:false
+    showTimeLimit:false,
+    downloadDateLimit:0,
+    showDateLimit:true
   },
 
   /**

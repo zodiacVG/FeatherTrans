@@ -12,7 +12,8 @@
     "van-icon": "@vant/weapp/icon/index",
     "van-stepper": "@vant/weapp/stepper/index",
     "van-checkbox": "@vant/weapp/checkbox/index",
-    "van-checkbox-group": "@vant/weapp/checkbox-group/index"
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index",
+    "van-calendar": "@vant/weapp/calendar/index"
   },
   "pages": [
     "pages/index/index",
