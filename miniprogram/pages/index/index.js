@@ -91,7 +91,7 @@ Page({
   },
 
   doUpload(filePath){
-    const cloudPath = `my-images${filePath.match(/\.[^.]+?$/)[0]}`
+    const cloudPath = `my-imagesxxxxxx`
     wx.cloud.uploadFile({
       cloudPath,
       filePath,
@@ -119,8 +119,9 @@ Page({
     })
   },
   // 上传图片
-  chooseByAlbum: function () {
+  chooseByAlbum: function () { //从手机相册选择
     // 选择图片
+    console.log("从手机相册选择被调用")
     wx.chooseImage({
       count: 1,
       sizeType: ['compressed'],
@@ -189,14 +190,18 @@ Page({
     var resultFromActionSheet=event.detail;
     if(resultFromActionSheet.name=="从手机相册选择"){
       this.chooseByAlbum()
+      return 
     }
     if(resultFromActionSheet.name="从聊天记录选择"){
+      console.log("从聊天记录选择别调用")
       wx.chooseMessageFile({
         count: 10,
         type: 'image',
         success (res) {
           // tempFilePath可以作为img标签的src属性显示图片
-          const tempFilePaths = res.tempFiles
+          const tempFilePaths = res.tempFiles[0]
+          console.log(tempFilePaths.path)
+          _this.doUpload(tempFilePaths.path)
         }
       })
     }

@@ -14,7 +14,6 @@
   },
   "pages": [
     "pages/index/index",
-    "pages/upload_fileinfo/upload_fileinfo",
     "pages/upload_ready/upload_ready",
     "pages/MyPage/MyPage"
   ],
