@@ -19,7 +19,8 @@
     "pages/index/index",
     "pages/upload_ready/upload_ready",
     "pages/MyPage/MyPage",
-    "pages/uploadFinishPage/uploadFinishPage"
+    "pages/uploadFinishPage/uploadFinishPage",
+    "pages/shareOpenPage/shareOpenPage"
   ],
   "tabBar": {
     "list": [

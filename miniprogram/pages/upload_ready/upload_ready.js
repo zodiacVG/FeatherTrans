@@ -15,7 +15,8 @@ Page({
     downloadNumLimit:0,
     showTimeLimit:false,
     downloadDateLimit:7,
-    showDateLimit:false
+    showDateLimit:false,
+    fileID:'' //云数据库里的文件id
   },
 
   /**
@@ -69,6 +70,9 @@ Page({
       cloudPath:cloudPath,
       filePath:_this.data.fileSource,
       success: res => {
+        this.setData({
+          fileID:res.fileID
+        })
         todos.add({
           data:{
             fileID:res.fileID,
@@ -79,7 +83,7 @@ Page({
           },
           success: res => {
             wx.navigateTo({ //跳转至上传完成界面
-              url: '../uploadFinishPage/uploadFinishPage',
+              url: '../uploadFinishPage/uploadFinishPage?fileID='+this.data.fileID,
             })
             console.log(res)
           },
