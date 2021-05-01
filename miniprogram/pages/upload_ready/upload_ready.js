@@ -108,4 +108,24 @@ Page({
     })
   },
 
+  testSaveAlbum(){
+    wx.saveImageToPhotosAlbum({
+      filePath: this.data.fileSource,
+      success(res){
+        wx.showToast({
+          title: '成功保存到手机相册',
+          duration: 2000,
+          icon: success,
+        })
+      },
+      fail(res){
+        console.log(res)
+        wx.showToast({
+          title: '失败了！！！！',
+          duration: 2000,
+        })
+      }
+    })
+  }
+
 })

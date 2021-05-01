@@ -3,3 +3,4 @@
 <van-icon name="success" size="100px"/>
 <van-button square type="primary" open-type="share">分享给朋友</van-button>
 <van-button square type="primary">生成二维码</van-button>
+
