@@ -1,7 +1,8 @@
 <!--miniprogram/pages/upload_ready/upload_ready.wxml-->
 <text>miniprogram/pages/upload_ready/upload_ready.wxml</text>
-<van-image width="100" height="100" src="{{fileSource}}" />
-<van-cell-group>
+<van-image wx:if="{{fileType=='image'}}" width="100" height="100" src="{{fileSource}}" />
+<van-checkbox value="{{ showPasswordInput }}" bind:change="setPasswordShow">设置密码</van-checkbox>
+<van-cell-group wx:if="{{showPasswordInput==true}}">
   <van-field
     lable="密码"
     model:value="{{ passwordValue }}"
@@ -11,5 +12,5 @@
 </van-cell-group>
 <van-checkbox value="{{ showTimeLimit }}" bind:change="setTimeLimit">设置下载次数</van-checkbox>
 <van-stepper wx:if="{{showTimeLimit==true}}" value="{{ downloadNumLimit }}" step="5" />
-设置下载期限
+<van-checkbox value="{{ showDateLimit }}" bind:change="setDateShow">设置下载期限</van-checkbox>
 <van-stepper wx:if="{{showDateLimit==true}}" value="{{ downloadDateLimit }}" step="5" />

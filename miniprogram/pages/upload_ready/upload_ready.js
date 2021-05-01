@@ -6,11 +6,12 @@ Page({
    */
   data: {
     fileSource:'',
+    fileType:'',
     passwordValue:'',
     downloadNumLimit:0,
     showTimeLimit:false,
-    downloadDateLimit:0,
-    showDateLimit:true
+    downloadDateLimit:7,
+    showDateLimit:false
   },
 
   /**
@@ -18,7 +19,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      fileSource:options.filePath
+      fileSource:options.filePath,
+      fileType:options.fileType
     })
     console.log('filesource'+this.fileSource)
   },
@@ -40,6 +42,18 @@ Page({
   setTimeLimit(e){
     this.setData({
       showTimeLimit:e.detail
+    })
+  },
+
+  setPasswordShow(e){
+    this.setData({
+      showPasswordInput:e.detail
+    })
+  },
+
+  setDateShow(e){
+    this.setData({
+      showDateLimit:e.detail
     })
   }
 

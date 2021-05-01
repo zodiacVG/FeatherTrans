@@ -90,7 +90,7 @@ Page({
     })
   },
 
-  doUpload(filePath){
+  doUpload(filePath,fileType){
     const cloudPath = `my-imagesxxxxxx`
     wx.cloud.uploadFile({
       cloudPath,
@@ -102,8 +102,9 @@ Page({
         app.globalData.cloudPath = cloudPath
         app.globalData.imagePath = filePath
         console.log('filepath'+filePath)
+        console.log('fileType'+fileType)
         wx.navigateTo({
-          url: '../upload_ready/upload_ready?filePath='+filePath
+          url: '../upload_ready/upload_ready?filePath='+filePath+'&fileType='+fileType
         })
       },
       fail: e => {
@@ -132,7 +133,7 @@ Page({
         })
 
         const filePath = res.tempFilePaths[0]
-        _this.doUpload(filePath)
+        _this.doUpload(filePath,"image")
         // 上传图片
       },
       fail: e => {
@@ -199,9 +200,8 @@ Page({
         type: 'all',
         success (res) {
           // tempFilePath可以作为img标签的src属性显示图片
-          const tempFilePaths = res.tempFiles[0]
-          console.log(tempFilePaths.path)
-          _this.doUpload(tempFilePaths.path)
+          const tempFile = res.tempFiles[0]
+          _this.doUpload(tempFile.path,tempFile.type)
         }
       })
     }
