@@ -18,22 +18,24 @@
   "pages": [
     "pages/index/index",
     "pages/upload_ready/upload_ready",
-    "pages/MyPage/MyPage"
+    "pages/MyPage/MyPage",
+    "pages/uploadFinishPage/uploadFinishPage"
   ],
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "text",
-      "iconPath": "images/icons/发送.png",
-      "selectedIconPath": "images/icons/发送.png"
-    },
-    {
-      "pagePath": "pages/MyPage/MyPage",
-      "text": "我的",
-      "iconPath": "images/icons/我的.png",
-      "selectedIconPath": "images/icons/我的.png"
-    }
-  ]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "text",
+        "iconPath": "images/icons/发送.png",
+        "selectedIconPath": "images/icons/发送.png"
+      },
+      {
+        "pagePath": "pages/MyPage/MyPage",
+        "text": "我的",
+        "iconPath": "images/icons/我的.png",
+        "selectedIconPath": "images/icons/我的.png"
+      }
+    ]
   },
   "window": {
     "backgroundColor": "#F6F6F6",

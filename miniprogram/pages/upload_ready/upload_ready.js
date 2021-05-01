@@ -64,7 +64,7 @@ Page({
 
   doUploadToCloud(){
     console.log('调用了上传的函数')
-    const cloudPath = `my-imagesxxxxxxxxxxx`
+    const cloudPath = `my-images`+Date.now()+getApp().globalData.openid
     wx.cloud.uploadFile({
       cloudPath:cloudPath,
       filePath:_this.data.fileSource,
@@ -75,13 +75,16 @@ Page({
             uploadDate:Date.now(),
             dowmloadPassword:_this.data.passwordValue,
             downloadDateLimit:_this.data.downloadDateLimit,
-            downloadNumLimit:_this.data.downloadNumLimit,
-            success: res => {
-              console.log(res)
-            },
-            fail: e => {
-              console.log(e)
-            }
+            downloadNumLimit:_this.data.downloadNumLimit
+          },
+          success: res => {
+            wx.navigateTo({ //跳转至上传完成界面
+              url: '../uploadFinishPage/uploadFinishPage',
+            })
+            console.log(res)
+          },
+          fail: e => {
+            console.log(e)
           }
         })
         console.log('[上传文件] 成功：', res)
