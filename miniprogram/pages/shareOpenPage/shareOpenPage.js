@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isButtonForbidden:false, //按钮是否被禁用
     res: '',
     recordID: '',
     buttonText: '下载文件', //要是不符合条件就会变成其他文字 todo 最好按钮颜色也一并变化
@@ -54,7 +55,8 @@ Page({
         if (res.downloadNumLimit != -1) {
           if (res.downloadNumLimit == 0) {
             this.setData({
-              buttonText: '超过下载次数限制'
+              buttonText: '超过下载次数限制',
+              isButtonForbidden:true
             })
             return
           }
