@@ -5,5 +5,11 @@
 剩余下载次数
 截止时间
 输入密码
-<van-image width="100" height="100" src="{{filePath}}" />
+<image width="100" height="100" src="{{filePath}}" bindtap="previewImage"/>
 <van-button square type="primary" bindtap="downloadSharedFile">下载文件</van-button>
+<van-action-sheet
+  show="{{ actionSheetShow }}"
+  actions="{{ actions }}"
+  bind:close="actionShwwtOnClose"
+  bind:select="actionSheetOnSelect"
+/>

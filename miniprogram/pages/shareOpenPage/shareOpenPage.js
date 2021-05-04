@@ -2,6 +2,7 @@
 const db=wx.cloud.database()
 const todos=db.collection('files')
 var _this=null
+const app=getApp()
 
 Page({
 
@@ -10,7 +11,13 @@ Page({
    */
   data: {
     fileID:'',
-    filePath:''
+    filePath:'',
+    actionSheetShow:false,
+    actions:[
+      {
+        name:'保存到手机'
+      }
+    ]
   },
 
   /**
@@ -19,7 +26,7 @@ Page({
   onLoad: function (options) {
     _this=this
     this.onGetOpenid()
-    this.setData({
+    this.setData({ 
       fileID:options.fileID
     })
     todos.doc(this.data.fileID).get({
@@ -27,8 +34,9 @@ Page({
         console.log('数据库里查到的数据'+res)
       }
     })
-    this.setData({
+    this.setData({ //打开界面时就查询到文件的ID
       fileID:options.fileID
+      //todo 应该还要能够查到密码等信息
     })
 
   },
@@ -65,4 +73,70 @@ Page({
       }
     })
   },
+
+  tapToSaveImg(e){
+    //用户需要授权
+    wx.getSetting({
+      success: (res) => {
+        if (!res.authSetting['scope.writePhotosAlbum']) {
+          wx.authorize({
+            scope: 'scope.writePhotosAlbum',
+            success:()=> {
+              // 同意授权
+              this.saveImg1(thsi.data.filePath);
+            },
+            fail: (res) =>{
+              console.log(res);
+            }
+          })
+        }else{
+          // 已经授权了
+          this.saveImg1(this.data.filePath);
+        }
+      },
+      fail: (res) =>{
+        console.log(res);
+      }
+    })   
+  },
+
+  saveImg1(filePath){
+    wx.saveImageToPhotosAlbum({
+      filePath:filePath,
+      success:(res)=> { 
+         wx.showToast({
+         title:'保存成功'
+         });
+      },
+      fail:(res)=>{
+         wx.showToast({
+           title:'您已取消保存',
+           icon:"none"
+         });
+      }
+     })
+  },
+
+  actionSheetOnClose(){ //关闭选择菜单
+    thsi.setData({
+      actionSheetShow:false
+    })
+  },
+
+  actionSheetOnSlect(e){
+    var result=e.detail
+    if(e=='保存到手机'){
+      this.tapToSaveImg()
+    }
+  },
+
+  previewImage(){
+    wx.previewImage({
+      urls: [this.data.filePath],
+      current: 'current',
+      success: (res) => {},
+      fail: (res) => {},
+      complete: (res) => {},
+    })
+  }
 })
