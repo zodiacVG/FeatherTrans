@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fileID:''
+    recordID:''
   },
 
   /**
@@ -13,14 +13,14 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      fileID:options.fileID
+      recordID:options.recordID
     })
   },
   onShareAppMessage(){ //todo 需要完成分享进入页面
     return{
       title:'给你分享了一个文件',
       desc:'分享页面内容',
-      path:'/pages/shareOpenPage/shareOpenPage?fileID='+this.data.fileID
+      path:'/pages/shareOpenPage/shareOpenPage?recordID='+this.data.recordID
     }
   }
 })

@@ -12,8 +12,8 @@ Page({
     fileSource:'',
     fileType:'',
     passwordValue:'',
-    downloadNumLimit:0,
-    showTimeLimit:false,
+    downloadNumLimit:-1, //-1代表没有次数限制
+    showTimeLimit:false, //
     downloadDateLimit:7,
     showDateLimit:false,
     fileID:'' //云数据库里的文件id
@@ -83,7 +83,7 @@ Page({
           },
           success: res => {
             wx.navigateTo({ //跳转至上传完成界面
-              url: '../uploadFinishPage/uploadFinishPage?fileID='+this.data.fileID,
+              url: '../uploadFinishPage/uploadFinishPage?recordID='+res._id,
             })
             console.log(res)
           },
@@ -107,25 +107,5 @@ Page({
       }
     })
   },
-
-  testSaveAlbum(){
-    wx.saveImageToPhotosAlbum({
-      filePath: this.data.fileSource,
-      success(res){
-        wx.showToast({
-          title: '成功保存到手机相册',
-          duration: 2000,
-          icon: success,
-        })
-      },
-      fail(res){
-        console.log(res)
-        wx.showToast({
-          title: '失败了！！！！',
-          duration: 2000,
-        })
-      }
-    })
-  }
 
 })

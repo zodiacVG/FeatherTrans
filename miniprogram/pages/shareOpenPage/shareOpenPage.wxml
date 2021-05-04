@@ -2,11 +2,11 @@
 <text>miniprogram/pages/shareOpenPage/shareOpenPage.wxml</text>
 文件ID
 {{fileID}}
-剩余下载次数
-截止时间
+剩余下载次数  {{downloadNumLimit}}
+截止时间 {{downloadDateLimt}}
 输入密码
 <image width="100" height="100" src="{{filePath}}" bindtap="previewImage"/>
-<van-button square type="primary" bindtap="downloadSharedFile">下载文件</van-button>
+<van-button square type="primary" bindtap="downloadSharedFile">{{buttonText}}</van-button>
 <van-action-sheet
   show="{{ actionSheetShow }}"
   actions="{{ actions }}"
