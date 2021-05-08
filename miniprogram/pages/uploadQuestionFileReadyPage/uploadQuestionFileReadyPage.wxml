@@ -1,2 +1,14 @@
 <!--miniprogram/pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage.wxml-->
 <text>miniprogram/pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage.wxml</text>
+回答问题数选择
+<van-slider value="{{ totalQuestionsNum }}" use-button-slot bind:drag="onDragTotalQuestionsNum">
+  <view class="custom-button" slot="button">
+    {{ totalQuestionsNum }}/100
+  </view>
+</van-slider>
+答对几道才算通过？
+<van-slider value="{{ needQuestionsNum }}" use-button-slot bind:drag="onDragNeedQuestionsNum">
+  <view class="custom-button" slot="button">
+    {{ needQuestionsNum }}/100
+  </view>
+</van-slider>

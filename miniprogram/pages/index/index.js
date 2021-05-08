@@ -12,6 +12,7 @@ Page({
     requestResult: '',
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl'), // 如需尝试获取用户信息可改为false,
+    isQuestionFile:false,
     pop_show:false, //弹窗的显示控制
     textValue:"",
     jpg_source:"",
@@ -75,11 +76,18 @@ Page({
     })
   },
 
-  doUpload(filePath,fileType){
+  doUpload(filePath,fileType){ //上传普通文件
     wx.navigateTo({
       url: '../upload_ready/upload_ready?filePath='+filePath+'&fileType='+fileType
     })
   },
+
+  doUploadQuestionFile(filePath,fileType){ //上传问答文件
+    wx.navigateTo({
+      url: '../uploadQuestionFileReadyPage/uploadQuestionFileReadyPage?filePath='+filePath+'&fileType='+fileType
+    })
+  },
+
   // 上传图片
   chooseByAlbum: function () { //从手机相册选择
     // 选择图片
@@ -92,9 +100,12 @@ Page({
         wx.showLoading({
           title: '上传中',
         })
-
         const filePath = res.tempFilePaths[0]
-        _this.doUpload(filePath,"image")
+        if(_this.data.isQuestionFile==false){
+          _this.doUpload(filePath,"image")
+        }else{
+          _this.doUploadQuestionFile(filePath,"image")
+        }
         // 上传图片
       },
       fail: e => {
@@ -106,6 +117,13 @@ Page({
   tapUploadButton(){
     this.setData({
       actionSheetShow:true
+    })
+  },
+
+  tapUploadQuestionFileButton(){
+    this.setData({
+      actionSheetShow:true,
+      isQuestionFile:true
     })
   },
 
@@ -162,7 +180,11 @@ Page({
         success (res) {
           // tempFilePath可以作为img标签的src属性显示图片
           const tempFile = res.tempFiles[0]
-          _this.doUpload(tempFile.path,tempFile.type)
+          if(_this.data.isQuestionFile==false){
+            _this.doUpload(tempFile.path,tempFile.type)
+          }else{
+            _this.doUploadQuestionFile(tempFile.path,tempFile.type)
+          }
         }
       })
     }
