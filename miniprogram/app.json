@@ -20,7 +20,8 @@
     "pages/upload_ready/upload_ready",
     "pages/MyPage/MyPage",
     "pages/uploadFinishPage/uploadFinishPage",
-    "pages/shareOpenPage/shareOpenPage"
+    "pages/shareOpenPage/shareOpenPage",
+    "pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage"
   ],
   "tabBar": {
     "list": [
