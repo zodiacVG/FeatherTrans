@@ -4,13 +4,13 @@
 回答问题数选择
 <van-slider value="{{ totalQuestionsNum }}" use-button-slot bind:drag="onDragTotalQuestionsNum" min="5" max="10">
   <view class="custom-button" slot="button">
-    {{ totalQuestionsNum }}/100
+    {{ totalQuestionsNum }}
   </view>
 </van-slider>
 答对几道才算通过？
 <van-slider id="needQuestionsNumSlider" value="{{ needQuestionsNum }}" use-button-slot bind:drag="onDragNeedQuestionsNum" min="2" max="{{totalQuestionsNum}}">
   <view class="custom-button" slot="button">
-    {{ needQuestionsNum }}/100
+    {{ needQuestionsNum }}
   </view>
 </van-slider>
 <van-button bindtap="startSelectQuestion">开始选择问题</van-button>
