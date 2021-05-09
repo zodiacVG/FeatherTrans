@@ -1,14 +1,16 @@
 <!--miniprogram/pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage.wxml-->
 <text>miniprogram/pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage.wxml</text>
+<van-image wx:if="{{fileType=='image'}}" width="100" height="100" src="{{fileSource}}" />
 回答问题数选择
-<van-slider value="{{ totalQuestionsNum }}" use-button-slot bind:drag="onDragTotalQuestionsNum">
+<van-slider value="{{ totalQuestionsNum }}" use-button-slot bind:drag="onDragTotalQuestionsNum" min="5" max="10">
   <view class="custom-button" slot="button">
     {{ totalQuestionsNum }}/100
   </view>
 </van-slider>
 答对几道才算通过？
-<van-slider value="{{ needQuestionsNum }}" use-button-slot bind:drag="onDragNeedQuestionsNum">
+<van-slider id="needQuestionsNumSlider" value="{{ needQuestionsNum }}" use-button-slot bind:drag="onDragNeedQuestionsNum" min="2" max="{{totalQuestionsNum}}">
   <view class="custom-button" slot="button">
     {{ needQuestionsNum }}/100
   </view>
 </van-slider>
+<van-button bindtap="startSelectQuestion">开始选择问题</van-button>
