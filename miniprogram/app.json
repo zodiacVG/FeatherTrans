@@ -22,8 +22,7 @@
     "pages/MyPage/MyPage",
     "pages/uploadFinishPage/uploadFinishPage",
     "pages/shareOpenPage/shareOpenPage",
-    "pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage",
-    "pages/selectQuestionsPage/selectQuestionsPage"
+    "pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage"
   ],
   "tabBar": {
     "list": [
