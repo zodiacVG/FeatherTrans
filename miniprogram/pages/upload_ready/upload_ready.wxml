@@ -11,7 +11,7 @@
   />
 </van-cell-group>
 <van-checkbox value="{{ showTimeLimit }}" bind:change="setTimeLimit">设置下载次数</van-checkbox>
-<van-stepper wx:if="{{showTimeLimit==true}}" value="{{ downloadNumLimit }}" step="5" />
+<van-stepper wx:if="{{showTimeLimit==true}}" value="{{ downloadNumLimit }}" bind:change="onChangeNumLimit" step="5" />
 <van-checkbox value="{{ showDateLimit }}" bind:change="setDateShow">设置下载期限</van-checkbox>
-<van-stepper wx:if="{{showDateLimit==true}}" value="{{ downloadDateLimit }}" step="5" />
+<van-stepper wx:if="{{showDateLimit==true}}" value="{{ downloadDateLimit }}" bind:change="onChangeDateLimit" step="5" />
 <van-button round type="info" bindtap="doUploadToCloud">上传</van-button>

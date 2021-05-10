@@ -111,7 +111,7 @@ Page({
             recordID:this.data.recordID
           },
           complete:(res)=>{
-            console.log('减少了下载次数')
+            console.log('增加了下载次数')
             console.log(res)
           }
         })

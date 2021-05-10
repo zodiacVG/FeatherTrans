@@ -31,20 +31,6 @@ Page({
     console.log('filesource'+this.fileSource)
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
   setTimeLimit(e){
     this.setData({
       showTimeLimit:e.detail
@@ -108,5 +94,17 @@ Page({
       }
     })
   },
+
+  onChangeNumLimit(e){
+    this.setData({
+      downloadNumLimit:e.detail
+    })
+  },
+
+  onChangeDateLimit(e){
+    this.setData({
+      downloadDateLimit:e.detail
+    })
+  }
 
 })
