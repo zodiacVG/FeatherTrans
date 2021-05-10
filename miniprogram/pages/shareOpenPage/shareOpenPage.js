@@ -3,6 +3,7 @@ const db = wx.cloud.database()
 const todos = db.collection('files')
 var _this = null
 const app = getApp()
+const oneDay = 24 * 60 * 60 * 1000
 
 Page({
 
@@ -33,7 +34,18 @@ Page({
     this.setData({
       recordID: options.recordID
     })
-    todos.doc(this.data.recordID).get({
+    console.log("recordID="+options.recordID)
+    wx.cloud.callFunction({ //用云函数测试
+      name:'getFileDataFromCloud',
+      data:{
+        recordID:this.data.recordID
+      },
+      complete:(res)=>{
+        console.log("调用云函数成功")
+        console.log(res.result)
+      },
+    })
+    todos.doc(this.data.recordID).get({ //云数据库里获取文件数据
       success: (res) => {
         console.log('数据库里查到的数据' + res.data)
         this.setData({
@@ -79,6 +91,7 @@ Page({
       },
       fail: (res) => {
         console.log('失败了')
+        console.log(res)
       }
     })
 

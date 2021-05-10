@@ -14,7 +14,7 @@ Page({
     passwordValue:'',
     downloadNumLimit:-1, //-1代表没有次数限制
     showTimeLimit:false, //
-    downloadDateLimit:7,
+    downloadDateLimit:7, //默认下载期限是7天
     showDateLimit:false,
     fileID:'' //云数据库里的文件id
   },
