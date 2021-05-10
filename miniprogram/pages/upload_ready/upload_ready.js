@@ -79,7 +79,8 @@ Page({
             uploadDate:Date.now(),
             dowmloadPassword:_this.data.passwordValue,
             downloadDateLimit:_this.data.downloadDateLimit,
-            downloadNumLimit:_this.data.downloadNumLimit
+            downloadNumLimit:_this.data.downloadNumLimit, 
+            downloadNums:0 //默认下载次数是0
           },
           success: res => {
             wx.navigateTo({ //跳转至上传完成界面
