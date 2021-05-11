@@ -1,2 +1,10 @@
 <!--miniprogram/pages/selectQuestionsPage/selectQuestionsPage.wxml-->
 <text>miniprogram/pages/selectQuestionsPage/selectQuestionsPage.wxml</text>
+
+<view wx:for="questionList" >
+  <van-tag mark type="primary">请输入问题{{ index+1 }}</van-tag>
+  <van-field  value="{{ value }}"
+    placeholder="请输入对应答案"
+    border="{{ false }}" 
+    bind:change="onChange" />
+</view>

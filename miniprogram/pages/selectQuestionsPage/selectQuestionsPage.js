@@ -8,7 +8,8 @@ Page({
     filePath:'',
     fileType:'',
     totalQuestionsNum:0,
-    needQuestionsNum:0
+    needQuestionsNum:0,
+    questionList:[]
   },
 
   /**
@@ -19,8 +20,11 @@ Page({
       filePath:options.filePath,
       fileType:options.fileType,
       totalQuestionsNum:options.totalQuestionsNum,
-      needQuestionsNum:options.needQuestionsNum
+      needQuestionsNum:options.needQuestionsNum,
     })
+    console.log("答对问题数"+this.totalQuestionsNum);
+    for(var i= 0;i<this.totalQuestionsNum;i++)
+      questionList.push(i);
   },
 
   /**
