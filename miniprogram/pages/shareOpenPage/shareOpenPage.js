@@ -3,6 +3,7 @@ const db = wx.cloud.database()
 const todos = db.collection('files')
 var _this = null
 const app = getApp()
+const oneDay = 24 * 60 * 60 * 1000
 
 Page({
 
@@ -33,7 +34,18 @@ Page({
     this.setData({
       recordID: options.recordID
     })
-    todos.doc(this.data.recordID).get({
+    console.log("recordID="+options.recordID)
+    wx.cloud.callFunction({ //用云函数测试
+      name:'getFileDataFromCloud',
+      data:{
+        recordID:this.data.recordID
+      },
+      complete:(res)=>{
+        console.log("调用云函数成功")
+        console.log(res.result)
+      },
+    })
+    todos.doc(this.data.recordID).get({ //云数据库里获取文件数据
       success: (res) => {
         console.log('数据库里查到的数据' + res.data)
         this.setData({
@@ -52,8 +64,8 @@ Page({
         //开始判断文件附加条件
         //判断下载次数
         console.log('走到判断num了')
-        if (res.downloadNumLimit != -1) {
-          if (res.downloadNumLimit == 0) {
+        if (res.downloadNumLimit != -1) { //等于-1说明没有设置限制
+          if (res.downloadNumLimit == res.downloadNums) { //限制次数等于实际下载次数
             this.setData({
               buttonText: '超过下载次数限制',
               isButtonForbidden:true
@@ -79,17 +91,29 @@ Page({
       },
       fail: (res) => {
         console.log('失败了')
+        console.log(res)
       }
     })
 
   },
 
-  downloadSharedFile() {
+  downloadSharedFile() { //点击下载按钮之后
     wx.cloud.downloadFile({
       fileID: this.data.fileID,
       success: res => {
         this.setData({
           filePath: res.tempFilePath
+        })
+        //还应当减少文件的下载次数
+        wx.cloud.callFunction({
+          name:'reduceDownloadTimes',
+          data:{
+            recordID:this.data.recordID
+          },
+          complete:(res)=>{
+            console.log('增加了下载次数')
+            console.log(res)
+          }
         })
       },
       fail(res) {
@@ -115,66 +139,6 @@ Page({
         console.error('[云函数] [login] 调用失败', err)
       }
     })
-  },
-
-  //暂未用到
-  tapToSaveImg(e) {
-    //用户需要授权
-    wx.getSetting({
-      success: (res) => {
-        if (!res.authSetting['scope.writePhotosAlbum']) {
-          wx.authorize({
-            scope: 'scope.writePhotosAlbum',
-            success: () => {
-              // 同意授权
-              this.saveImg1(thsi.data.filePath);
-            },
-            fail: (res) => {
-              console.log(res);
-            }
-          })
-        } else {
-          // 已经授权了
-          this.saveImg1(this.data.filePath);
-        }
-      },
-      fail: (res) => {
-        console.log(res);
-      }
-    })
-  },
-
-  //暂未用到
-  saveImg1(filePath) {
-    wx.saveImageToPhotosAlbum({
-      filePath: filePath,
-      success: (res) => {
-        wx.showToast({
-          title: '保存成功'
-        });
-      },
-      fail: (res) => {
-        wx.showToast({
-          title: '您已取消保存',
-          icon: "none"
-        });
-      }
-    })
-  },
-
-  //暂未用到
-  actionSheetOnClose() { //关闭选择菜单
-    thsi.setData({
-      actionSheetShow: false
-    })
-  },
-
-  //暂未用到
-  actionSheetOnSlect(e) {
-    var result = e.detail
-    if (e == '保存到手机') {
-      this.tapToSaveImg()
-    }
   },
 
   previewImage() {

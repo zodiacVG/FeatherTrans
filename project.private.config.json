@@ -1,0 +1,30 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "db guide",
+          "pathName": "pages/databaseGuide/databaseGuide",
+          "query": ""
+        },
+        {
+          "name": "打开分享页面",
+          "pathName": "pages/shareOpenPage/shareOpenPage",
+          "query": "recordID=cbddf0af6099294f07984f7017eec077",
+          "scene": 1007
+        }
+      ]
+    }
+  }
+}

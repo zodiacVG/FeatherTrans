@@ -12,6 +12,6 @@
 </view>
 {{userInfo.nickName}}
 已登陆
-
 </view>
-
+<van-button>已经分享的文件</van-button> 
+联系我们

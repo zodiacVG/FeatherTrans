@@ -13,4 +13,4 @@
     {{ needQuestionsNum }}
   </view>
 </van-slider>
-<van-button bindtap="startSelectQuestion">开始选择问题ceshi</van-button>
+<van-button bindtap="startSelectQuestion">开始选择问题</van-button>

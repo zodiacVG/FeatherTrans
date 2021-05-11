@@ -14,7 +14,7 @@ Page({
     passwordValue:'',
     downloadNumLimit:-1, //-1代表没有次数限制
     showTimeLimit:false, //
-    downloadDateLimit:7,
+    downloadDateLimit:7, //默认下载期限是7天
     showDateLimit:false,
     fileID:'' //云数据库里的文件id
   },
@@ -29,20 +29,6 @@ Page({
       fileType:options.fileType
     })
     console.log('filesource'+this.fileSource)
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
   },
 
   setTimeLimit(e){
@@ -79,7 +65,8 @@ Page({
             uploadDate:Date.now(),
             dowmloadPassword:_this.data.passwordValue,
             downloadDateLimit:_this.data.downloadDateLimit,
-            downloadNumLimit:_this.data.downloadNumLimit
+            downloadNumLimit:_this.data.downloadNumLimit, 
+            downloadNums:0 //默认下载次数是0
           },
           success: res => {
             wx.navigateTo({ //跳转至上传完成界面
@@ -107,5 +94,17 @@ Page({
       }
     })
   },
+
+  onChangeNumLimit(e){
+    this.setData({
+      downloadNumLimit:e.detail
+    })
+  },
+
+  onChangeDateLimit(e){
+    this.setData({
+      downloadDateLimit:e.detail
+    })
+  }
 
 })
