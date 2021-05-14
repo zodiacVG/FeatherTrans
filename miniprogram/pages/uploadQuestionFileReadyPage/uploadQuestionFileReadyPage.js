@@ -21,13 +21,13 @@ Page({
     })
   },
 
-  onDragTotalQuestionsNum(e){ //拖拽进度条
+  onDragTotalQuestionsNum(e){ //拖拽进度条   
     this.setData({
       totalQuestionsNum:e.detail.value
     })
-    this.selectComponent('#needQuestionsNumSlider').init({
-      ...this.data.data
-    })
+    // this.selectComponent('#needQuestionsNumSlider').init({
+    //   ...this.data.data
+    // })
   },
 
   onDragNeedQuestionsNum(e){

@@ -23,6 +23,29 @@
           "pathName": "pages/shareOpenPage/shareOpenPage",
           "query": "recordID=cbddf0af6099294f07984f7017eec077",
           "scene": 1007
+        },
+        {
+          "name": "pages/selectQuestionsPage/selectQuestionsPage",
+          "pathName": "pages/selectQuestionsPage/selectQuestionsPage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage",
+          "pathName": "pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/downloadQuestionFile",
+          "pathName": "pages/downloadQuestionFile",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/downloadQuestionFile/downloadQuestionFile",
+          "pathName": "pages/downloadQuestionFile/downloadQuestionFile",
+          "scene": null
         }
       ]
     }

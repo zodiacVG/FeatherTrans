@@ -14,7 +14,10 @@
     "van-checkbox": "@vant/weapp/checkbox/index",
     "van-checkbox-group": "@vant/weapp/checkbox-group/index",
     "van-calendar": "@vant/weapp/calendar/index",
-    "van-slider": "@vant/weapp/slider/index"
+    "van-slider": "@vant/weapp/slider/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index"
   },
   "pages": [
     "pages/index/index",
@@ -23,7 +26,8 @@
     "pages/uploadFinishPage/uploadFinishPage",
     "pages/shareOpenPage/shareOpenPage",
     "pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage",
-    "pages/selectQuestionsPage/selectQuestionsPage"
+    "pages/selectQuestionsPage/selectQuestionsPage",
+    "pages/downloadQuestionFile/downloadQuestionFile"
   ],
   "tabBar": {
     "list": [
