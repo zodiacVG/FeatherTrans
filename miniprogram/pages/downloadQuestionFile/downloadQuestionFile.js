@@ -19,7 +19,11 @@ Page({
     filePath: '',
     downloadNumLimit: -1,
     downloadDateLimit: '',
+    downloadPassword: '',
     actionSheetShow: false,
+    showPop:false,
+    is_password_correct:false,
+    enter_password:'',
     actions: [{
       name: '保存到手机'
     }]
@@ -43,12 +47,10 @@ Page({
       },
       complete:(res)=>{
         console.log("调用云函数成功")
-        console.log(res.result)
       },
     })
     todos.doc(this.data.recordID).get({ //云数据库里获取文件数据
       success: (res) => {
-        console.log('数据库里查到的数据')
         this.setData({
           res: res.data,
           fileID: res.data.fileID
@@ -64,7 +66,6 @@ Page({
         })
         //开始判断文件附加条件
         //判断下载次数
-        console.log('走到判断num了')
         if (res.downloadNumLimit != -1) { //等于-1说明没有设置限制
           if (res.downloadNumLimit == res.downloadNums) { //限制次数等于实际下载次数
             this.setData({
@@ -75,58 +76,79 @@ Page({
           }
         }
         //判断日期
-        console.log('走到判断date了')
         if (res.downloadDateLimit * 24 * 60 * 60 * 1000 + res.uploadDate < Date.now()) { //超时了的话
           this.setData({
             buttonText: '超过下载期限'
           })
           return
         }
-        console.log('走到判断pass了')
-        //判断密码
-        if (res.downloadPassword != '') { //如果有密码的话,应该弹窗！
-          this.setData({ //todo 正式使用密码需要加密处理
-            downloadPassword: res.downloadPassword
-          })
-          
-        }
+        //设置密码  
+        this.setData({ //todo 正式使用密码需要加密处理
+          downloadPassword: res.downloadPassword
+        })
       },
       fail: (res) => {
         console.log('失败了')
-        console.log(res)
       }
     })
 
   },
-
+  closePop: function(){
+    this.setData({
+      showPop:false
+    })
+  },
   downloadSharedFile() { //点击下载按钮之后
-    wx.cloud.downloadFile({
-      fileID: this.data.fileID,
-      success: res => {
-        this.setData({
-          filePath: res.tempFilePath
-        })
-        //还应当减少文件的下载次数
-        wx.cloud.callFunction({
-          name:'reduceDownloadTimes',
-          data:{
-            recordID:this.data.recordID
-          },
-          complete:(res)=>{
-            console.log('增加了下载次数')
-            console.log(res)
-          }
-        })
-      },
-      fail(res) {
-        wx.showToast({
-          title: '下载文件失败了',
-          duration: 5000,
-        })
-      }
+    this.setData({
+      showPop:true
+    })
+    var flag =false
+    if(this.data.downloadPassword==''){
+      flag=true
+    }
+    else{
+      
+    }
+    
+
+    if(flag==true){
+      wx.cloud.downloadFile({
+        fileID: this.data.fileID,
+        success: res => {
+          this.setData({
+            filePath: res.tempFilePath
+          })
+          //还应当减少文件的下载次数
+          wx.cloud.callFunction({
+            name:'reduceDownloadTimes',
+            data:{
+              recordID:this.data.recordID
+            },
+            complete:(res)=>{
+              console.log('增加了下载次数')
+              console.log(res)
+            }
+          })
+        },
+        fail(res) {
+          wx.showToast({
+            title: '下载文件失败了',
+            duration: 5000,
+          })
+        }
+      })
+    }
+  },
+  enterPasswordChange: function(event) {
+    this.setData({
+      enter_password:event.detail
     })
   },
+  confirmEnterPassword: function(event){
+    if(this.data.enter_password==this.data.downloadPassword){
 
+    }
+  },
   onGetOpenid: function () {
     // 调用云函数
     wx.cloud.callFunction({

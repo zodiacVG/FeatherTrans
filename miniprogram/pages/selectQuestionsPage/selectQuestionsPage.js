@@ -75,10 +75,11 @@ Page({
             data:{
               fileID:res.fileID,
               uploadDate:Date.now(),
-              dowmloadPassword:_this.data.passwordValue,
+              downloadPassword:_this.data.passwordValue,
               downloadDateLimit:_this.data.downloadDateLimit,
               downloadNumLimit:_this.data.downloadNumLimit, 
               downloadNums:0, 
+              needQuestionsNum:_this.data.needQuestionsNum,
               questionList: _this.data.questionList
             },
             success: res => {
