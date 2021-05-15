@@ -48,7 +48,7 @@ Page({
     })
     todos.doc(this.data.recordID).get({ //云数据库里获取文件数据
       success: (res) => {
-        console.log('数据库里查到的数据' + res.data)
+        console.log('数据库里查到的数据')
         this.setData({
           res: res.data,
           fileID: res.data.fileID
@@ -57,11 +57,11 @@ Page({
         var oneDay = 24 * 60 * 60 * 1000
         var res = this.data.res
         console.log('走到赋值前了')
+        
         this.setData({
           downloadDateLimit: res.uploadDate + res.downloadDateLimit * oneDay,
           downloadNumLimit: res.downloadNumLimit
         })
-
         //开始判断文件附加条件
         //判断下载次数
         console.log('走到判断num了')
@@ -88,6 +88,7 @@ Page({
           this.setData({ //todo 正式使用密码需要加密处理
             downloadPassword: res.downloadPassword
           })
+          
         }
       },
       fail: (res) => {
