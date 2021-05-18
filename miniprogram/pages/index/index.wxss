@@ -7,15 +7,39 @@ page {
   justify-content: flex-start;
 }
 
-#uploadButton{
+
+.logoShow{
+  text-align: center;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.uploadMethodSelectCard{
+  background-color: beige;
+  border-radius: 25px;
+  text-align: center;
+  height: 195px;
+}
+
+.titleText{
+  font-size:medium;
+  font-weight: 900;
+  text-align: center;
+}
+
+.uploadMethodPicture{
+  width: 50px;
+  height: 50px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
-#downloadButton{
-  margin-top: 20px;
-  background-color: aquamarine;
+
+.subtitleText{
+  font-size: 12px;
+  color:#888888;
+  margin:10px 20px 30px 20px;
+  padding-bottom: 20px;
 }
-
-
 /* 
 .userinfo, .uploader, .tunnel {
   margin-top: 40rpx;
