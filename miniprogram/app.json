@@ -18,8 +18,7 @@
     "van-toast": "@vant/weapp/toast/index",
     "van-radio": "@vant/weapp/radio/index",
     "van-radio-group": "@vant/weapp/radio-group/index",
-    "van-popup": "@vant/weapp/popup/index",
-    "van-dialog": "@vant/weapp/dialog/index"
+    "van-popup": "@vant/weapp/popup/index"
   },
   "pages": [
     "pages/index/index",

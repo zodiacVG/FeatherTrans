@@ -1,6 +1,7 @@
 <!--index.wxml-->
 <view class="container">
 	<van-button type="primary" bindtap="tapUploadQuestionFileButton" id="uploadQuestionFileButton">分享问答文件</van-button>
+	<text>\n</text>
 	<van-button type="primary" bindtap="tapUploadButton" id="uploadButton">分享普通文件</van-button>
 	<van-button type="primary" bindtap="downFile" id="downloadButton">下载文件</van-button>
 	<van-dialog use-slot title="标题" show="{{pop_show}}" show-cancel-button confirm-button-open-type="comfirmFile" bind:close="comfirmFile">

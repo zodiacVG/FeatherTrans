@@ -18,12 +18,17 @@ Page({
     fileID: '',
     filePath: '',
     downloadNumLimit: -1,
+    downloadNums: 0,
     downloadDateLimit: '',
     downloadPassword: '',
     actionSheetShow: false,
-    showPop:false,
-    is_password_correct:false,
-    enter_password:'',
+    showPasswordPop: false,
+    is_password_false: false,
+    enter_password: '',
+    surplus_enter_num: 5,//输入密码容许五次输入错误
+    questionList: [],
+    showQuestionPop: false,
+    needQuestionsNum: 0,
     actions: [{
       name: '保存到手机'
     }]
@@ -59,10 +64,12 @@ Page({
         var oneDay = 24 * 60 * 60 * 1000
         var res = this.data.res
         console.log('走到赋值前了')
-        
         this.setData({
           downloadDateLimit: res.uploadDate + res.downloadDateLimit * oneDay,
-          downloadNumLimit: res.downloadNumLimit
+          downloadNumLimit: res.downloadNumLimit,
+          downloadNums: res.downloadNums,
+          questionList:res.questionList,
+          needQuestionsNum:res.needQuestionsNum
         })
         //开始判断文件附加条件
         //判断下载次数
@@ -93,51 +100,56 @@ Page({
     })
 
   },
-  closePop: function(){
+  closePasswordPop: function(){
     this.setData({
-      showPop:false
+      showPasswordPop:false,
+      is_password_false:false,
+      enter_password:''
     })
   },
   downloadSharedFile() { //点击下载按钮之后
-    this.setData({
-      showPop:true
-    })
-    var flag =false
+    if(this.data.isButtonForbidden==true){
+      return
+    }
+   // 没有密码的情况
     if(this.data.downloadPassword==''){
-      flag=true
-    }
-    else{
-      
-    }
-    
-
-    if(flag==true){
-      wx.cloud.downloadFile({
-        fileID: this.data.fileID,
-        success: res => {
-          this.setData({
-            filePath: res.tempFilePath
-          })
-          //还应当减少文件的下载次数
-          wx.cloud.callFunction({
-            name:'reduceDownloadTimes',
-            data:{
-              recordID:this.data.recordID
-            },
-            complete:(res)=>{
-              console.log('增加了下载次数')
-              console.log(res)
-            }
-          })
-        },
-        fail(res) {
-          wx.showToast({
-            title: '下载文件失败了',
-            duration: 5000,
-          })
-        }
+      this.setData({
+        showQuestionPop:true
       })
     }
+    else{
+      this.setData({
+        showPasswordPop:true
+      })
+    } 
+  },
+  downloadFile: function(){
+    _this = this
+    wx.cloud.downloadFile({
+      fileID: this.data.fileID,
+      success: res => {
+        this.setData({
+          filePath: res.tempFilePath
+        })
+        //还应当减少文件的下载次数
+        wx.cloud.callFunction({
+          name:'reduceQuestionFileDownloadTimes',
+          data:{
+            recordID:_this.data.recordID
+          },
+          complete:(res)=>{
+            console.log('增加了下载次数')
+            console.log(res)
+          }
+        })
+      },
+      fail(res) {
+        wx.showToast({
+          title: '下载文件失败了',
+          duration: 5000,
+        })
+      }
+    })
   },
   enterPasswordChange: function(event) {
     this.setData({
@@ -145,9 +157,31 @@ Page({
     })
   },
   confirmEnterPassword: function(event){
+    // 密码输入成功的情况
     if(this.data.enter_password==this.data.downloadPassword){
-
+      this.closePasswordPop()
+      // 此时开始问答文件部分
+      this.setData({
+        showQuestionPop:true
+      })
     }
+    else{
+      this.setData({
+        is_password_false:true,
+        enter_password:'',
+        surplus_enter_num:this.data.surplus_enter_num-1
+      })
+    }
+    if(this.data.surplus_enter_num<=0){
+      wx.switchTab({
+        url: '../index/index'
+      })
+    }
+  },
+  closeQuestionPop: function() {
+    this.setData({
+      showQuestionPop:false
+    })
   },
   onGetOpenid: function () {
     // 调用云函数
@@ -164,7 +198,38 @@ Page({
       }
     })
   },
-
+  onQuestionChange: function(event) {
+    var idx = parseInt(event.target.dataset.idx)
+    var temp_questionList = this.data.questionList
+    temp_questionList[idx].chooseAnswer = parseInt(event.detail)
+    this.setData({
+      questionList: temp_questionList
+    })
+  },
+  confirmQuestion: function() {
+    var right_count = 0
+    for(var i=0;i<this.data.questionList.length;i++){
+      if(this.data.questionList[i].radio==this.data.questionList[i].chooseAnswer) {
+        right_count++
+      }
+    }
+    if(right_count>=this.data.needQuestionsNum){
+      this.downloadFile()
+      this.setData({
+        isButtonForbidden:true,
+        showQuestionPop:false
+      })
+    }
+    else{
+      wx.switchTab({
+        url: '../index/index'
+      })
+      wx.showToast({
+        title: '题目错太多，你不太行！',
+        duration: 5000,
+      })
+    }
+  },
   previewImage() {
     wx.previewImage({
       urls: [this.data.filePath],
