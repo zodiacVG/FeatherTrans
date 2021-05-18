@@ -26,9 +26,10 @@ Page({
     this.setData({
       fileSource:options.filePath,
       fileType:options.fileType,
-      totalQuestionsNum:options.totalQuestionsNum,
-      needQuestionsNum:options.needQuestionsNum,
+      totalQuestionsNum:parseInt(options.totalQuestionsNum),
+      needQuestionsNum:parseInt(options.needQuestionsNum),
     })
+    console.log(this.data)
     // 这里开始构建questionList，从数据库里面获取，有两个属性：问题+答案（数组）
     var temp_question = []
     wx.cloud.callFunction({ //用云函数测试
