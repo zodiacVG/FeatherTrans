@@ -50,6 +50,7 @@ Page({
     })
 
   },
+  
   confirmSubmint: function(){
     var temp_questionList = this.data.questionList;
     var flag= true;
@@ -111,6 +112,7 @@ Page({
       })
     }
   },
+
   onChange: function(event){
     var idx = parseInt(event.target.dataset.idx)
     var temp_questionList = this.data.questionList
@@ -120,6 +122,7 @@ Page({
       questionList: temp_questionList
     })
   },
+
   onChangeNumLimit(e){
     this.setData({
       downloadNumLimit:e.detail
