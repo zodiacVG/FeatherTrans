@@ -105,6 +105,16 @@ Page({
     this.setData({
       downloadDateLimit:e.detail
     })
+  },
+
+  previewImage() {
+    wx.previewImage({
+      urls: [this.data.fileSource],
+      current: 'current',
+      success: (res) => {},
+      fail: (res) => {},
+      complete: (res) => {},
+    })
   }
 
 })

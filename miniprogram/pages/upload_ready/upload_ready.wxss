@@ -1,1 +1,6 @@
 /* miniprogram/pages/upload_ready/upload_ready.wxss */
+.bodyContainer{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}

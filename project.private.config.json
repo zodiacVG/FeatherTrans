@@ -65,6 +65,12 @@
           "pathName": "pages/UserSharedFile/sharedFile",
           "query": "recordID=cbddf0af6099294f07984f7017eec077",
           "scene": null
+        },
+        {
+          "name": "上传准备界面",
+          "pathName": "pages/upload_ready/upload_ready",
+          "query": "filePath=cloud://env1-uhwk6.656e-env1-uhwk6-1305427049/my-images1619877709247oVM9D5bOsiRu5w6JkEiHNCPB-IyU&fileType=image",
+          "scene": null
         }
       ]
     }
