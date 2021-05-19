@@ -1,0 +1,9 @@
+<!--miniprogram/pages/fileAccessUsers/fileAccessUsers.wxml-->
+<text>miniprogram/pages/fileAccessUsers/fileAccessUsers.wxml</text>
+<view wx:for="{{ accessUsersList }}" wx:key="idx" wx:for-index="idx" wx:for-item="UserItem">
+  <van-tag mark type="primary">用户{{ idx+1 }}为：</van-tag>
+  <van-tag mark type="primary">{{ UserItem.userID }}</van-tag>
+  <van-tag mark type="primary">答对数 / 所有题目 {{UserItem.userRightNum}} / {{UserItem.userTotalNum}}</van-tag>
+  <text>\n</text>
+  <van-button type="default" bind:click="toFileAccessUsers" data-idx="{{idx}}">test</van-button>
+</view>

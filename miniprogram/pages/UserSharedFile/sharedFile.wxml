@@ -1,2 +1,8 @@
 <!--miniprogram/pages/sharedFile/sharedFile.wxml-->
 <text>miniprogram/pages/sharedFile/sharedFile.wxml</text>
+<view wx:for="{{ userQuestionList }}" wx:key="idx" wx:for-index="idx" wx:for-item="questionItem">
+  <van-tag mark type="primary">文件{{ idx+1 }}为：</van-tag>
+  <van-tag mark type="primary">{{ questionItem._id }}</van-tag>
+  <van-button type="default" bind:click="toFileAccessUsers" data-idx="{{idx}}">确认</van-button>
+</view>
+<text>目前只有第七条数据点击确认是有User列表的，测试的时候注意一下。</text>
