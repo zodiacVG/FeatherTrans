@@ -11,7 +11,7 @@
 		<van-row>
 			<van-col span="12">
 				<view class="uploadMethodSelectCard" style="margin-left:15px;margin-right:5px"
-					bindtap="tapUploadQuestionFileButton">
+					bindtap="tapUploadButton">
 					<image class="uploadMethodPicture" src="/images/icons/normal_file.png"></image>
 					<view class="titleText">上传普通文件</view>
 					<view class="subtitleText">自定义设置，分享给好友并在线预览</view>
