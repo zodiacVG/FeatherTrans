@@ -1,8 +1,11 @@
 //index.js 测试git
 const app = getApp()
 var _this
+let that = this;
+
 Page({
   data: {
+    height:0,
     activeTab:0,
     avatarUrl: './user-unlogin.png',
     userInfo: {},
@@ -33,6 +36,22 @@ Page({
   onLoad: function() {
     _this = this
     _this.onGetOpenid()
+    wx.getSystemInfo({
+      success: function (res) {
+        // 获取可使用窗口宽度
+        let clientHeight = res.windowHeight;
+        // 获取可使用窗口高度
+        let clientWidth = res.windowWidth;
+        // 算出比例
+        let ratio = 750 / clientWidth;
+        // 算出高度(单位rpx)
+        let height = clientHeight * ratio;
+        // 设置高度
+        _this.setData({
+          height: height
+        });
+      }
+    });
   },
 
   getUserProfile() {

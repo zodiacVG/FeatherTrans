@@ -7,11 +7,28 @@ page {
   justify-content: flex-start;
 }
 
-
 .logoShow{
   text-align: center;
+  margin-top: 20px;
   margin-right: 20px;
   margin-left: 20px;
+  float: left;
+}
+
+.shadowBox{
+  border-radius: 25px;
+  background-color:white;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  position: fixed;
+  bottom: 0px;
+}
+
+.describText{
+  font-size: smaller;
+  font-weight: 800;
+  color: #888888;
+  letter-spacing: 5px;
 }
 
 .uploadMethodSelectCard{

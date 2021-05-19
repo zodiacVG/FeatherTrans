@@ -1,10 +1,11 @@
 <!--index.wxml-->
 <!-- <van-button type="primary" bindtap="tapUploadQuestionFileButton" id="uploadQuestionFileButton">分享问答文件</van-button>
 <van-button type="primary" bindtap="tapUploadButton" id="uploadButton">分享普通文件</van-button> -->
-<view class="logoShow">
+<view class="logoShow" style="height:{{height/2}}rpx">
 	<image style="width:100%" src="/images/logo/ft-logo.png" mode="widthFix"/>
-	<text ></text>
+	<text class="describText">轻量化文件分享</text>
 </view>
+<view class="shadowBox">
 <van-row>
 	<van-col span="12">
 		<view class="uploadMethodSelectCard" style="margin-left:15px;margin-right:5px" bindtap="tapUploadQuestionFileButton" >
@@ -21,5 +22,6 @@
 		</view>
 	</van-col>
 </van-row>
+</view>
 <van-action-sheet show="{{ actionSheetShow }}" actions="{{ actions }}" bind:close="onCloseActionSheet"
 	bind:select="onSelectActionSheet" />
