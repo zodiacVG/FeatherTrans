@@ -1,6 +1,7 @@
 <!--index.wxml-->
 <!-- <van-button type="primary" bindtap="tapUploadQuestionFileButton" id="uploadQuestionFileButton">分享问答文件</van-button>
 <van-button type="primary" bindtap="tapUploadButton" id="uploadButton">分享普通文件</van-button> -->
+<image class="background" src="/images/feather_background2.jpg" mode="aspectFill" />
 <view class="bodyContainer">
 	<view class="logoShow" style="height:{{clientHeight-265}}px">
 		<image style="width:100%" src="/images/logo/ft-logo.png" mode="widthFix" />
@@ -24,6 +25,9 @@
 				</view>
 			</van-col>
 		</van-row>
+		<view class="tipRow">
+			<text class="tipText">请选择一种文件分享方式</text>
+		</view>
 	</view>
 </view>
 <van-action-sheet show="{{ actionSheetShow }}" actions="{{ actions }}" bind:close="onCloseActionSheet"
