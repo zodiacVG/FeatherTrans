@@ -23,13 +23,14 @@ page {
 .shadowBox{
   border-radius: 25px;
   background-color:white;
-  padding-top: 20px;
-  padding-bottom: 50px;
+  padding-top: 25px;
+  padding-bottom: 70px;
   position: fixed;
   bottom: 0px;
 }
 
 .describText{
+  margin-top: 20px;
   font-size: smaller;
   font-weight: 800;
   color: #888888;
