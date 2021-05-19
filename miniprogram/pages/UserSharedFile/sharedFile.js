@@ -1,6 +1,5 @@
 // miniprogram/pages/sharedFile/sharedFile.js
 const db = wx.cloud.database()
-const question_files = db.collection('question_files')
 var _this = null
 const app = getApp()
 
@@ -10,75 +9,55 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userID: ''
+    userID: '',
+    userQuestionList: [],
+    userInfo: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    _this = this
     this.setData({
       // userID: app.globalData.openID // 理论上一开始打开第一个页面就有了但是我们现在要先调试一下先
       userID: "oVM9D5RLJMu8C13EMPD5NsWDRfR4"
     })
-    db.collection('question_files').where({
-      _openid: 'user-open-id',
-      done: false
+
+    db.collection('userInfo').where({
+      _openid: this.data.userID
     })
     .get({
       success: function(res) {
-        // res.data 是包含以上定义的两条记录的数组
-        console.log(res.data)
+        this.setData({
+          userInfo: res.data[0]._userInfo
+        })
       }
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+    db.collection('question_files').where({
+      _openid: this.data.userID
+    })
+    .get({
+      success: function(res) {
+        _this.setData({
+          userQuestionList: res.data
+        })
+        console.log(_this.data)
+      }
+    })
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    console.log(this.data)
+  },
 
+  toFileAccessUsers: function(event){
+    var idx = event.target.dataset.idx
+    wx.navigateTo({
+      url: '../fileAccessUsers/fileAccessUsers?fileID='+this.data.userQuestionList[idx]._id+'&userInfo='+this.data.userID
+    })
   }
 })
