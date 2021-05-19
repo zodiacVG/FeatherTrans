@@ -11,6 +11,8 @@ Page({
   data: {
     fileSource:'',
     fileType:'',
+    fileSize:0,
+    shareNameValue:'', //分享的名称
     passwordValue:'',
     downloadNumLimit:-1, //-1代表没有次数限制
     showTimeLimit:false, //
@@ -26,7 +28,8 @@ Page({
     _this=this
     this.setData({
       fileSource:options.filePath,
-      fileType:options.fileType
+      fileType:options.fileType,
+      fileSize:(options.fileSize/1024/1024).toFixed(2)
     })
     console.log('filesource'+this.fileSource)
   },
@@ -51,6 +54,9 @@ Page({
 
   doUploadToCloud(){
     console.log('调用了上传的函数')
+    wx.showLoading({
+      title: '上传中',
+    })
     const cloudPath = `my-images`+Date.now()+getApp().globalData.openid
     wx.cloud.uploadFile({
       cloudPath:cloudPath,
@@ -62,6 +68,7 @@ Page({
         todos.add({
           data:{
             fileID:res.fileID,
+            shareName:_this.data.shareNameValue,
             uploadDate:Date.now(),
             dowmloadPassword:_this.data.passwordValue,
             downloadDateLimit:_this.data.downloadDateLimit,

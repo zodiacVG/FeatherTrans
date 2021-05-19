@@ -2,5 +2,60 @@
 .bodyContainer{
   display:flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.fileInfoView{
+  display: flex;
   justify-content: center;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+.fileInfoText{
+  margin-left: 50rpx;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.setContentView{
+  background-color: #F5F5DC;
+  border-radius: 25px;
+  padding: 10px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.explainText{
+  font-size:10px;
+  color: #666666;
+  font-weight: 400;
+}
+
+.passwordInputBox{
+  margin-top: 15px;
+  width: 600rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.passwordHelpBox{
+  width: 300rpx;
+}
+
+.setNumInputBox{
+  width: 600rpx;
+  text-align: center;
+  position: relative;
+}
+
+.setDateInputBox{
+  width: 600rpx;
+  text-align: center;
 }

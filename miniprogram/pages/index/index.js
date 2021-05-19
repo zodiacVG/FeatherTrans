@@ -97,18 +97,18 @@ Page({
     })
   },
 
-  doUpload(filePath,fileType){ //上传普通文件
+  doUpload(filePath,fileType,fileSize){ //上传普通文件
     wx.navigateTo({
-      url: '../upload_ready/upload_ready?filePath='+filePath+'&fileType='+fileType
+      url: '../upload_ready/upload_ready?filePath='+filePath+'&fileType='+fileType+'&fileSize='+fileSize
     })
     wx.hideLoading({
       success: (res) => {},
     })
   },
 
-  doUploadQuestionFile(filePath,fileType){ //上传问答文件
+  doUploadQuestionFile(filePath,fileType,fileSize){ //上传问答文件
     wx.navigateTo({
-      url: '../uploadQuestionFileReadyPage/uploadQuestionFileReadyPage?filePath='+filePath+'&fileType='+fileType
+      url: '../uploadQuestionFileReadyPage/uploadQuestionFileReadyPage?filePath='+filePath+'&fileType='+fileType+'&fileSize='+fileSize
     })
     wx.hideLoading({
       success: (res) => {},
@@ -127,11 +127,13 @@ Page({
         wx.showLoading({
           title: '上传中',
         })
+        console.log(res)
         const filePath = res.tempFilePaths[0]
+        const fileSize = res.tempFiles[0].size
         if(_this.data.isQuestionFile==false){
-          _this.doUpload(filePath,"image")
+          _this.doUpload(filePath,"image",fileSize)
         }else{
-          _this.doUploadQuestionFile(filePath,"image")
+          _this.doUploadQuestionFile(filePath,"image",fileSize)
         }
         // 上传图片
       },
@@ -154,33 +156,11 @@ Page({
     })
   },
 
-
-  downFile:function(e){
-    this.setData({
-      pop_show:true
-    })
-  },
-
   onChange_text(event){
     this.setData({
       textValue:event.detail
     }),
     console.log(this.data.textValue)
-  },
-
-  comfirmFile(){
-    console.log('call comfirmFile')
-    wx.cloud.downloadFile({
-      fileID: this.data.textValue, // 文件 ID
-      success: res => {
-        // 返回临时文件路径
-        console.log(res.tempFilePath)
-        this.setData({
-          jpg_source:res.tempFilePath
-        })
-      },
-      fail: console.error
-    })
   },
   
   onClose(){
@@ -208,9 +188,9 @@ Page({
           // tempFilePath可以作为img标签的src属性显示图片
           const tempFile = res.tempFiles[0]
           if(_this.data.isQuestionFile==false){
-            _this.doUpload(tempFile.path,tempFile.type)
+            _this.doUpload(tempFile.path,tempFile.type,tempFile.size)
           }else{
-            _this.doUploadQuestionFile(tempFile.path,tempFile.type)
+            _this.doUploadQuestionFile(tempFile.path,tempFile.type,tempFile.size)
           }
         }
       })
