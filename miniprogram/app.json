@@ -28,7 +28,8 @@
     "pages/shareOpenPage/shareOpenPage",
     "pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage",
     "pages/selectQuestionsPage/selectQuestionsPage",
-    "pages/downloadQuestionFile/downloadQuestionFile"
+    "pages/downloadQuestionFile/downloadQuestionFile",
+    "pages/test/test"
   ],
   "tabBar": {
     "list": [

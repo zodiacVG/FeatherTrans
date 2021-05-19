@@ -25,12 +25,14 @@ closeable="{{true}}" close-on-click-overlay="{{false}}">
 </van-popup>
 <van-popup show="{{ showQuestionPop }}" bind:close="closeQuestionPop" 
 closeable="{{true}}" close-on-click-overlay="{{false}}">
-<view wx:for="{{ questionList }}" wx:for-index="idx" wx:for-item="questionItem">
+<view wx:for="{{ questionList }}" wx:key="idx" wx:for-index="idx" wx:for-item="questionItem">
   <van-tag mark type="primary">问题{{ idx+1 }}为：</van-tag>
   <van-tag mark type="primary">{{ questionItem.question }}</van-tag>
   <van-radio-group value="{{ questionItem.chooseAnswer}}" bind:change="onQuestionChange" data-idx="{{idx}}">
-    <van-radio name="{{ answer_idx+1 }}" wx:for="{{ questionItem.options }}" wx:for-index="answer_idx"  wx:for-item="answer_name">{{ answer_name }}</van-radio>
+    <van-radio name="{{ answer_idx+1 }}" wx:for="{{ questionItem.options }}" wx:key="answer_idx" wx:for-index="answer_idx"  wx:for-item="answer_name">{{ answer_name }}</van-radio>
   </van-radio-group>
 </view>
+<van-tag mark type="primary" wx:if="{{questionErrorTip}}">{{questionErrorText}}</van-tag>
+<text>\n</text>
 <van-button type="default" bind:click="confirmQuestion">确认</van-button>
 </van-popup>

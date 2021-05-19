@@ -81,7 +81,8 @@ Page({
               downloadNumLimit:_this.data.downloadNumLimit, 
               downloadNums:0, 
               needQuestionsNum:_this.data.needQuestionsNum,
-              questionList: _this.data.questionList
+              questionList: _this.data.questionList,
+              accessUsersList: []
             },
             success: res => {
               wx.navigateTo({ //跳转至上传完成界面
@@ -114,6 +115,7 @@ Page({
     var idx = parseInt(event.target.dataset.idx)
     var temp_questionList = this.data.questionList
     temp_questionList[idx].radio = parseInt(event.detail)
+    temp_questionList[idx].chooseAnswer = 0
     this.setData({
       questionList: temp_questionList
     })

@@ -6,7 +6,7 @@ const app = getApp()
 const oneDay = 24 * 60 * 60 * 1000
 
 Page({
-
+  
   /**
    * 页面的初始数据
    */

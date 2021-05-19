@@ -17,6 +17,7 @@ Page({
     buttonText: '下载文件', //要是不符合条件就会变成其他文字 todo 最好按钮颜色也一并变化
     fileID: '',
     filePath: '',
+    openid: '',
     downloadNumLimit: -1,
     downloadNums: 0,
     downloadDateLimit: '',
@@ -27,7 +28,10 @@ Page({
     enter_password: '',
     surplus_enter_num: 5,//输入密码容许五次输入错误
     questionList: [],
+    accessUsersList: [],
     showQuestionPop: false,
+    questionErrorTip: false,
+    questionErrorText: '',
     needQuestionsNum: 0,
     actions: [{
       name: '保存到手机'
@@ -39,12 +43,17 @@ Page({
    */
   onLoad: function (options) {
     _this = this
+    wx.showLoading({
+      title: '加载中',
+    })
     this.onGetOpenid()
+    setTimeout(this.InitalConditionCheck,2000)
+  },
+  InitalConditionCheck(){
     this.setData({
       // recordID: options.recordID 先随便给个测试数据跑通
-      recordID: 'cbddf0af609e991d087663971856eb9e'
+      recordID: '79550af260a3ddde17dd907c601b9be3'
     })
-    console.log("recordID="+options.recordID)
     wx.cloud.callFunction({ //用云函数测试
       name:'getQuestionFileDataFromCloud',
       data:{
@@ -63,16 +72,43 @@ Page({
         //开始给页面元素赋值
         var oneDay = 24 * 60 * 60 * 1000
         var res = this.data.res
-        console.log('走到赋值前了')
         this.setData({
           downloadDateLimit: res.uploadDate + res.downloadDateLimit * oneDay,
           downloadNumLimit: res.downloadNumLimit,
           downloadNums: res.downloadNums,
           questionList: res.questionList,
           downloadPassword: res.downloadPassword,
-          needQuestionsNum: res.needQuestionsNum
+          needQuestionsNum: res.needQuestionsNum,
+          accessUsersList: res.accessUsersList
         })
-        //开始判断文件附加条件
+        // 先判断这人之前有没有访问过
+        var access_list = this.data.accessUsersList
+        var this_user_openID = app.globalData.openid 
+        var is_contained = false
+        for(var i=0;i<access_list.length;i++){
+          if(this_user_openID==access_list[i].userID){
+            is_contained = true
+          }
+        }
+        // for循环可能要遍历一下，我怕还没遍历完就直接判断容易gg
+        setTimeout(function(){
+          if(is_contained==true){
+            wx.switchTab({
+              url: '../index/index',
+            })
+            wx.showToast({
+              title: '辣鸡答过了 爬',
+              duration: 5000,
+            })
+            wx.hideLoading({
+              success: (res) => {},
+            })
+            return
+          }
+        },1000)      
+        wx.hideLoading({
+          success: (res) => {},
+        })
         //判断下载次数
         if (res.downloadNumLimit != -1) { //等于-1说明没有设置限制
           if (res.downloadNumLimit <= res.downloadNums) { //限制次数等于实际下载次数
@@ -95,7 +131,6 @@ Page({
         console.log('失败了')
       }
     })
-
   },
   closePasswordPop: function(){
     this.setData({
@@ -119,6 +154,18 @@ Page({
         showPasswordPop:true
       })
     } 
+  },
+  updateAccessUsersData: function(right_num, total_num){
+    var access_item= {userID:app.globalData.openid,userRightNum:right_num,userTotalNum:total_num}
+    this.data.accessUsersList.push(access_item)
+    db.collection('question_files').doc(this.data.recordID).update({
+      data: {
+        accessUsersList: this.data.accessUsersList
+      },
+      success: function(res) {
+        console.log("访客数据更新成功")
+      }
+    })
   },
   downloadFile: function(){
     _this = this
@@ -154,10 +201,8 @@ Page({
     })
   },
   confirmEnterPassword: function(event){
-    // 密码输入成功的情况
     if(this.data.enter_password==this.data.downloadPassword){
       this.closePasswordPop()
-      // 此时开始问答文件部分
       this.setData({
         showQuestionPop:true
       })
@@ -204,6 +249,17 @@ Page({
     })
   },
   confirmQuestion: function() {
+    console.log('看看选项')
+    console.log(this.data.questionList)
+    for(var i=0;i<this.data.questionList.length;i++){
+      if(this.data.questionList[i].chooseAnswer==0){
+        this.setData({
+          questionErrorTip:true,
+          questionErrorText: '问题'+(i+1)+'非空'
+        })
+        return
+      }
+    }
     var right_count = 0
     for(var i=0;i<this.data.questionList.length;i++){
       if(this.data.questionList[i].radio==this.data.questionList[i].chooseAnswer) {
@@ -216,6 +272,10 @@ Page({
         isButtonForbidden:true,
         showQuestionPop:false
       })
+      // 点击确定回答后更新访客数据 包括他对了几题 他是谁
+      setTimeout(function(){
+        _this.updateAccessUsersData(right_count,_this.data.questionList.length)
+      },1000)
     }
     else{
       wx.switchTab({
