@@ -6,6 +6,7 @@ let that = this;
 Page({
   data: {
     height:0,
+    clientHeight:0,
     activeTab:0,
     avatarUrl: './user-unlogin.png',
     userInfo: {},
@@ -48,7 +49,8 @@ Page({
         let height = clientHeight * ratio;
         // 设置高度
         _this.setData({
-          height: height
+          height: height,
+          clientHeight:clientHeight
         });
       }
     });

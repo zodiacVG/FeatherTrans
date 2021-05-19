@@ -7,12 +7,17 @@ page {
   justify-content: flex-start;
 }
 
+.bodyContainer{
+  
+}
+
 .logoShow{
-  text-align: center;
-  margin-top: 20px;
   margin-right: 20px;
   margin-left: 20px;
-  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .shadowBox{
