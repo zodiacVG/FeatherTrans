@@ -101,11 +101,17 @@ Page({
     wx.navigateTo({
       url: '../upload_ready/upload_ready?filePath='+filePath+'&fileType='+fileType
     })
+    wx.hideLoading({
+      success: (res) => {},
+    })
   },
 
   doUploadQuestionFile(filePath,fileType){ //上传问答文件
     wx.navigateTo({
       url: '../uploadQuestionFileReadyPage/uploadQuestionFileReadyPage?filePath='+filePath+'&fileType='+fileType
+    })
+    wx.hideLoading({
+      success: (res) => {},
     })
   },
 
