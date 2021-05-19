@@ -29,7 +29,7 @@
     "pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage",
     "pages/selectQuestionsPage/selectQuestionsPage",
     "pages/downloadQuestionFile/downloadQuestionFile",
-    "pages/sharedFile/sharedFile"
+    "pages/UserSharedFile/sharedFile"
   ],
   "tabBar": {
     "list": [

@@ -80,4 +80,10 @@ Page({
       }
     })
   },
+
+  switchToSharedFile(e){
+    wx.navigateTo({
+      url: '../UserSharedFile/sharedFile',
+    })
+  }
 })

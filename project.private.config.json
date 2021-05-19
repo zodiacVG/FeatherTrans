@@ -59,6 +59,12 @@
           "pathName": "pages/MyPage/MyPage",
           "query": "recordID=cbddf0af6099294f07984f7017eec077",
           "scene": null
+        },
+        {
+          "name": "pages/UserSharedFile/sharedFile",
+          "pathName": "pages/UserSharedFile/sharedFile",
+          "query": "recordID=cbddf0af6099294f07984f7017eec077",
+          "scene": null
         }
       ]
     }
