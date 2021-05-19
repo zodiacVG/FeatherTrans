@@ -1,10 +1,9 @@
 <!--miniprogram/pages/shareOpenPage/shareOpenPage.wxml-->
 <text>miniprogram/pages/shareOpenPage/shareOpenPage.wxml</text>
-文件ID
-{{fileID}}
-剩余下载次数  {{downloadNumLimit}}
-截止时间 {{downloadDateLimt}}
-输入密码
+文件ID：{{fileID}}<text>\n</text>
+剩余下载次数:{{downloadNumLimit - downloadNums}}<text>\n</text>
+截止时间:{{downloadDateLimit}}<text>\n</text>
+输入密码:{{downloadPassword}}<text>\n</text>
 <image width="100" height="100" src="{{filePath}}" bindtap="previewImage"/>
 <van-button square type="primary" bindtap="downloadSharedFile" disabled="{{isButtonForbidden}}">{{buttonText}}</van-button>
 <van-action-sheet
@@ -13,3 +12,12 @@
   bind:close="actionShwwtOnClose"
   bind:select="actionSheetOnSelect"
 />
+<van-popup show="{{ showPasswordPop }}" bind:close="closePasswordPop" 
+closeable="{{true}}" close-on-click-overlay="{{false}}">
+<van-tag type="primary">请输入密码</van-tag>
+<van-field
+    value="{{ enter_password }}" placeholder="请输入提取密码"
+    border="{{ false }}" bind:change="enterPasswordChange" />
+<van-tag type="primary" wx:if="{{is_password_false}}">密码错误<text>\n</text>剩余输入次数:{{surplus_enter_num}}</van-tag>
+<van-button type="default" bind:click="confirmEnterPassword">确认</van-button>
+</van-popup>

@@ -42,7 +42,7 @@ Page({
     this.onGetOpenid()
     this.setData({
       // recordID: options.recordID 先随便给个测试数据跑通
-      recordID: 'cbddf0af609e83de08724f3c087861d8'
+      recordID: 'cbddf0af609e991d087663971856eb9e'
     })
     console.log("recordID="+options.recordID)
     wx.cloud.callFunction({ //用云函数测试
@@ -68,13 +68,14 @@ Page({
           downloadDateLimit: res.uploadDate + res.downloadDateLimit * oneDay,
           downloadNumLimit: res.downloadNumLimit,
           downloadNums: res.downloadNums,
-          questionList:res.questionList,
-          needQuestionsNum:res.needQuestionsNum
+          questionList: res.questionList,
+          downloadPassword: res.downloadPassword,
+          needQuestionsNum: res.needQuestionsNum
         })
         //开始判断文件附加条件
         //判断下载次数
         if (res.downloadNumLimit != -1) { //等于-1说明没有设置限制
-          if (res.downloadNumLimit == res.downloadNums) { //限制次数等于实际下载次数
+          if (res.downloadNumLimit <= res.downloadNums) { //限制次数等于实际下载次数
             this.setData({
               buttonText: '超过下载次数限制',
               isButtonForbidden:true
@@ -89,10 +90,6 @@ Page({
           })
           return
         }
-        //设置密码  
-        this.setData({ //todo 正式使用密码需要加密处理
-          downloadPassword: res.downloadPassword
-        })
       },
       fail: (res) => {
         console.log('失败了')
