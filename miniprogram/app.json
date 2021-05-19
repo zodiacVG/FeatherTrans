@@ -29,7 +29,7 @@
     "pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage",
     "pages/selectQuestionsPage/selectQuestionsPage",
     "pages/downloadQuestionFile/downloadQuestionFile",
-    "pages/test/test"
+    "pages/sharedFile/sharedFile"
   ],
   "tabBar": {
     "list": [
@@ -53,7 +53,7 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "FeatherTrans",
     "navigationBarTextStyle": "black",
-    "navigationStyle":"custom"
+    "navigationStyle": "custom"
   },
   "sitemapLocation": "sitemap.json"
 }

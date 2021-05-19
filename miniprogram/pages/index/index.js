@@ -228,6 +228,12 @@ Page({
         url: '../MyPage/MyPage',
       })
     }
+  },
+
+  swithToSharedFile(e){
+    wx.navigateTo({
+      url: '../sharedFile/sharedFile',
+    })
   }
 
 })

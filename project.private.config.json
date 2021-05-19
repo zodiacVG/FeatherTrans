@@ -53,6 +53,12 @@
           "pathName": "pages/shareOpenPage/shareOpenPage",
           "query": "recordID=cbddf0af6099294f07984f7017eec077",
           "scene": null
+        },
+        {
+          "name": "pages/MyPage/MyPage",
+          "pathName": "pages/MyPage/MyPage",
+          "query": "recordID=cbddf0af6099294f07984f7017eec077",
+          "scene": null
         }
       ]
     }
