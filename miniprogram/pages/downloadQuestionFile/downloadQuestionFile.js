@@ -91,21 +91,19 @@ Page({
           }
         }
         // for循环可能要遍历一下，我怕还没遍历完就直接判断容易gg
-        setTimeout(function(){
-          if(is_contained==true){
-            wx.switchTab({
-              url: '../index/index',
-            })
-            wx.showToast({
-              title: '辣鸡答过了 爬',
-              duration: 5000,
-            })
-            wx.hideLoading({
-              success: (res) => {},
-            })
-            return
-          }
-        },1000)      
+        if(is_contained==true){
+          wx.switchTab({
+            url: '../index/index',
+          })
+          wx.showToast({
+            title: '辣鸡答过了 爬',
+            duration: 5000,
+          })
+          wx.hideLoading({
+            success: (res) => {},
+          })
+          return
+        }    
         wx.hideLoading({
           success: (res) => {},
         })
@@ -272,10 +270,7 @@ Page({
         isButtonForbidden:true,
         showQuestionPop:false
       })
-      // 点击确定回答后更新访客数据 包括他对了几题 他是谁
-      setTimeout(function(){
-        _this.updateAccessUsersData(right_count,_this.data.questionList.length)
-      },1000)
+      _this.updateAccessUsersData(right_count,_this.data.questionList.length)
     }
     else{
       wx.switchTab({

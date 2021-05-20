@@ -169,7 +169,10 @@ Page({
 
   onCloseActionSheet() {
     console.log('调用了！')
-    this.setData({ actionSheetShow: false });
+    this.setData({ 
+      actionSheetShow: false,
+      isQuestionFile:false
+    });
   },
 
   onSelectActionSheet(event) {
