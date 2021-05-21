@@ -21,6 +21,7 @@ Page({
     textValue:"",
     jpg_source:"",
     actionSheetShow: false,
+    questionActionSheetShow:false, //问答文件的选择菜单
     actions: [
       {
         name: '从手机相册选择',
@@ -145,13 +146,14 @@ Page({
   
   tapUploadButton(){
     this.setData({
-      actionSheetShow:true
+      actionSheetShow:true,
+      isQuestionFile:false
     })
   },
 
   tapUploadQuestionFileButton(){
     this.setData({
-      actionSheetShow:true,
+      questionActionSheetShow:true,
       isQuestionFile:true
     })
   },
@@ -170,8 +172,14 @@ Page({
   onCloseActionSheet() {
     console.log('调用了！')
     this.setData({ 
-      actionSheetShow: false,
-      isQuestionFile:false
+      actionSheetShow: false
+    });
+  },
+
+  onCloseQuestionActionSheet() {
+    console.log('也算关闭')
+    this.setData({ 
+      questionActionSheetShow: false
     });
   },
 
@@ -179,6 +187,7 @@ Page({
     console.log(event.detail);
     var resultFromActionSheet=event.detail;
     if(resultFromActionSheet.name=="从手机相册选择"){
+      console.log('从手机相册选择')
       this.chooseByAlbum()
       return 
     }
