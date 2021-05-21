@@ -42,7 +42,6 @@ Page({
         _this.setData({
           userQuestionList: res.data
         })
-        console.log(_this.data)
       }
     })
   },

@@ -11,7 +11,7 @@ Page({
     userID: '',
     fileID: '',
     userInfo: {},
-    accessUsersList: []
+    accessUsersList: []// 需要调用的东西都存在userInfo属性里
   },
 
   /**
@@ -41,56 +41,45 @@ Page({
         _this.setData({
           accessUsersList: res.data[0].accessUsersList
         })
+        var temp_accessUsersList = _this.data.accessUsersList
+        var temp_specific_User_list = []
+        let PromiseArr = []
+        for(var i=0;i<temp_accessUsersList.length;i++){
+          PromiseArr.push(new Promise((resolve, reject) => {
+          wx.cloud.callFunction({
+            name: "getUserInfo",
+            data: {
+              userID: temp_accessUsersList[i].userID
+            },
+            success: res => {
+              resolve(res)
+              temp_specific_User_list.push(res.result.data[0])
+            },
+            fail: err => {
+              reject(err)
+            },
+          })
+        }))}
+        Promise.all(PromiseArr).then(res => {
+          console.log(temp_specific_User_list[0])
+          for(var i=0;i<temp_accessUsersList.length;i++){
+            for(var j=0;j<temp_specific_User_list.length;j++){
+              if(temp_specific_User_list[j]._openid==temp_accessUsersList[i].userID){
+                temp_accessUsersList[i].userInfo = temp_specific_User_list[j]._userInfo
+              }
+            }
+          }
+          _this.setData({
+            accessUsersList:temp_accessUsersList
+          })
+        }, err => {
+            console.log(err)
+        })
       }
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  testFunction: function(){
+    console.log(this.data)
   }
 })

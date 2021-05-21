@@ -10,16 +10,15 @@
 	<view class="shadowBox">
 		<van-row>
 			<van-col span="12">
-				<view class="uploadMethodSelectCard" style="margin-left:15px;margin-right:5px"
-					bindtap="tapUploadButton">
-					<image class="uploadMethodPicture" src="/images/icons/normal_file.png"></image>
+				<view class="uploadMethodSelectCard" style="margin-left:15px;margin-right:5px">
+					<image class="uploadMethodPicture" src="/images/icons/normal_file.png" bindtap="tapUploadButton"></image>
 					<view class="titleText">上传普通文件</view>
 					<view class="subtitleText">自定义设置，分享给好友并在线预览</view>
 				</view>
 			</van-col>
 			<van-col span="12">
-				<view class="uploadMethodSelectCard" style="margin-left:5px;margin-right:15px" bindtap="tapUploadButton">
-					<image class="uploadMethodPicture" src="/images/icons/question_file.png"></image>
+				<view class="uploadMethodSelectCard" style="margin-left:5px;margin-right:15px" >
+					<image class="uploadMethodPicture" src="/images/icons/question_file.png" bindtap="tapUploadQuestionFileButton"></image>
 					<view class="titleText">上传问答文件</view>
 					<view class="subtitleText">只有答对一定数量的问题才能获取文件</view>
 				</view>
