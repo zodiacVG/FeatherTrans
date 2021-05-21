@@ -1,17 +1,27 @@
-<view wx:if="{{logged==false}}">
-<van-button type="primary" bindtap="getUserProfile">授权登录</van-button>
+<view class="bodyContainer">
+  <view wx:if="{{logged==false}}" class="loginView">
+    <van-button round type="info" bindtap="getUserProfile">
+      <view style="width:150rpx">授权登录</view>
+    </van-button>
+    <view>
+      <text class="explainText">登录以查看分享历史记录</text>
+    </view>
+  </view>
+
+  <view wx:elif="{{logged==true}}">
+    <view>
+      <image class="background" src="/images/feather_background2.jpg" mode="aspectFill" />
+      <van-image class="UserPicture" round width="150rpx" height="150rpx" src="{{userInfo.avatarUrl}}" />
+      <text class="nickNameText">{{userInfo.nickName}}</text>
+      <text class="tipText">已登录</text>
+    </view>
+    <view class="menuView">
+      <van-button round bind:click="switchToSharedFile" class="myPageButton">
+        <view class="myPageButtonContent">已经分享的文件</view>
+      </van-button>
+      <van-button round bind:click="switchToSharedFile" class="myPageButton">
+        <view class="myPageButtonContent">联系我们</view>
+      </van-button>
+    </view>
+  </view>
 </view>
-<view wx:elif="{{logged==true}}">
-<view class="UserPicture">
-<van-image
-  round
-  width="4rem"
-  height="4rem"
-  src="{{userInfo.avatarUrl}}"
-/>
-</view>
-{{userInfo.nickName}}
-已登陆
-</view>
-<van-button bind:click="switchToSharedFile">已经分享的文件</van-button> 
-联系我们

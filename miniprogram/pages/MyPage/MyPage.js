@@ -1,4 +1,5 @@
 // miniprogram/pages/login/login.js
+
 const db = wx.cloud.database();
 const userInfo = db.collection('userInfo');
 const _ = db.command;

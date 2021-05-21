@@ -55,9 +55,9 @@
           "scene": null
         },
         {
-          "name": "pages/MyPage/MyPage",
+          "name": "个人页面",
           "pathName": "pages/MyPage/MyPage",
-          "query": "recordID=cbddf0af6099294f07984f7017eec077",
+          "query": "",
           "scene": null
         },
         {
