@@ -1,4 +1,6 @@
 // miniprogram/pages/upload_ready/upload_ready.js
+import Notify from '@vant/weapp/notify/notify'
+
 const db=wx.cloud.database()
 const todos=db.collection('files')
 var _this=null
@@ -53,6 +55,10 @@ Page({
   },
 
   doUploadToCloud(){
+    if(_this.data.shareNameValue==''){
+      Notify({ type: 'primary', message: '分享名称不能为空' })
+      return
+    }
     console.log('调用了上传的函数')
     wx.showLoading({
       title: '上传中',

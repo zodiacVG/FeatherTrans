@@ -1,34 +1,28 @@
 <!--miniprogram/pages/upload_ready/upload_ready.wxml-->
 <view class="bodyContainer">
-  <view class="fileInfoView">
-    <van-image wx:if="{{fileType=='image'}}" fit="cover" round="true" width="100" 
-    height="100" bindtap="previewImage" src="{{fileSource}}" />
-    <view class="fileInfoText">
-      <view>
-        <text>文件大小:</text>
-        <text>{{fileSize}}MB</text>
-      </view>
-      <view style="margin-top:20px">
-        <text>文件类型:</text>
-        <text>{{fileType}}</text>
-      </view>
-    </view>
-  </view>
-  <view class="setContentView" style="background-color:#7BC0F6">
-    <text>请输入分享名称</text>
-    <text class="explainText" style="margin-top:10px">至多20个字符</text>
-    <view class="passwordInputBox" style="margin-top:5px">
-      <view class="passwordHelpBox">
-        <van-cell-group>
-          <van-field custom-style="border-radius:25px;width:300rpx;" lable="文件名" model:value="{{ shareNameValue }}"
-          maxlength="20"  placeholder="请输入分享名称" border="{{ false }}" />
-        </van-cell-group>
+  <view class="fileInfoContainer">
+    <view class="fileInfoView">
+      <van-image wx:if="{{fileType=='image'}}" fit="cover" round="true" width="70" height="70" bindtap="previewImage"
+        src="{{fileSource}}" />
+      <view class="fileInfoText">
+        <view>
+          <text class="titleText">文件大小 :</text>
+          <text> {{fileSize}}MB</text>
+        </view>
+        <view style="margin-top:10px">
+          <text class="titleText">文件类型 :</text>
+          <text> {{fileType}}</text>
+        </view>
       </view>
     </view>
+    <view class="nameInputBox">
+      <van-cell-group>
+        <van-field custom-style="border-radius:25px;width:500rpx;" lable="文件名" model:value="{{ shareNameValue }}"
+          input-align="center" maxlength="20" placeholder="请输入分享名称" border="{{ false }}" />
+      </van-cell-group>
+    </view>
   </view>
-
-
-  <view class="setContentView">
+  <view style="margin-top:12px" class="setContentView">
     <van-checkbox value="{{ showPasswordInput }}" bind:change="setPasswordShow">设置分享密码</van-checkbox>
     <view wx:if="{{showPasswordInput==true}}" class="passwordInputBox">
       <view class="passwordHelpBox">
@@ -64,3 +58,5 @@
     <view style="width:150rpx">上传</view>
   </van-button>
 </view>
+
+<van-notify id="van-notify" />
