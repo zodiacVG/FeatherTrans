@@ -71,6 +71,12 @@
           "pathName": "pages/upload_ready/upload_ready",
           "query": "filePath=cloud://env1-uhwk6.656e-env1-uhwk6-1305427049/my-images1619877709247oVM9D5bOsiRu5w6JkEiHNCPB-IyU&fileType=image&fileSize=369845",
           "scene": null
+        },
+        {
+          "name": "上传完毕准备分分享页面",
+          "pathName": "pages/uploadFinishPage/uploadFinishPage",
+          "query": "recordID=79550af260a7574c1896300676684b9d",
+          "scene": null
         }
       ]
     }
