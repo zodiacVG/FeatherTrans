@@ -45,8 +45,8 @@
   </view>
   <view class="setContentView">
     <van-checkbox value="{{ showDateLimit }}" bind:change="setDateShow">设置下载期限</van-checkbox>
+    <text class="explainText">默认下载期限为7天</text>
     <view class="setDateInputBox" wx:if="{{showDateLimit==true}}">
-      <text class="explainText">默认下载期限为7天</text>
       <view style="margin-top:10px">
         <van-stepper wx:if="{{showDateLimit==true}}" value="{{ downloadDateLimit }}" bind:change="onChangeDateLimit"
           step="5" />

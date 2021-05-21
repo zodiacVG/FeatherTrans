@@ -31,9 +31,9 @@
           "scene": null
         },
         {
-          "name": "pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage",
+          "name": "问答问题准备界面",
           "pathName": "pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage",
-          "query": "",
+          "query": "filePath=cloud://env1-uhwk6.656e-env1-uhwk6-1305427049/feather_background.jpg&fileType=image",
           "scene": null
         },
         {
