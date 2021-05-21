@@ -18,6 +18,8 @@ Page({
     fileID: '',
     filePath: '',
     openid: '',
+    userInfo: '',
+    ownerOpenID: '',
     downloadNumLimit: -1,
     downloadNums: 0,
     downloadDateLimit: '',
@@ -46,28 +48,47 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    this.onGetOpenid()
-    setTimeout(this.InitalConditionCheck,2000)
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        console.log('[云函数] [login] user openid: ', res.result.openid)
+        _this.setData({
+          openid: res.result.openid
+        })
+        app.globalData.openid = res.result.openid
+        _this.InitalConditionCheck()
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
+      }
+    })
   },
   InitalConditionCheck(){
+    _this = this
     this.setData({
       // recordID: options.recordID 先随便给个测试数据跑通
       recordID: '79550af260a3ddde17dd907c601b9be3'
-    })
-    wx.cloud.callFunction({ //用云函数测试
-      name:'getQuestionFileDataFromCloud',
-      data:{
-        recordID:this.data.recordID
-      },
-      complete:(res)=>{
-        console.log("调用云函数成功")
-      },
     })
     todos.doc(this.data.recordID).get({ //云数据库里获取文件数据
       success: (res) => {
         this.setData({
           res: res.data,
           fileID: res.data.fileID
+        })
+        wx.cloud.callFunction({
+          name: "getUserInfo",
+          data: {
+            userID: _this.data.openid
+          },
+          success: res => {
+            _this.setData({
+              userInfo: res.result.data[0]._userInfo
+            })
+          },
+          fail: err => {
+            reject(err)
+          }
         })
         //开始给页面元素赋值
         var oneDay = 24 * 60 * 60 * 1000
@@ -79,7 +100,8 @@ Page({
           questionList: res.questionList,
           downloadPassword: res.downloadPassword,
           needQuestionsNum: res.needQuestionsNum,
-          accessUsersList: res.accessUsersList
+          accessUsersList: res.accessUsersList,
+          ownerOpenID: res._openid
         })
         // 先判断这人之前有没有访问过
         var access_list = this.data.accessUsersList
@@ -270,6 +292,22 @@ Page({
         isButtonForbidden:true,
         showQuestionPop:false
       })
+            // 这里密码输入正确说明这人去答题了，我们提示一下文件主
+            wx.cloud.callFunction({
+              name: 'sendMessage',
+              data: {
+                'accepterID': _this.data.ownerOpenID,
+                'messageContent': '123',
+                'senderName': _this.data.userInfo.nickName+'参与了答题，答题情况：正确/总数( '+right_count+' / '+_this.data.needQuestionsNum+' )。',
+                'sendTime': new Date()
+              },
+              success: res => {
+                console.log('[云函数] 调用成功')
+              },
+              fail: err => {
+                console.error('[云函数] 调用失败', err)
+              }
+            })
       _this.updateAccessUsersData(right_count,_this.data.questionList.length)
     }
     else{
