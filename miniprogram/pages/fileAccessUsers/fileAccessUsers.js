@@ -11,7 +11,8 @@ Page({
     userID: '',
     fileID: '',
     userInfo: {},
-    accessUsersList: []// 需要调用的东西都存在userInfo属性里
+    accessUsersList: [],// 需要调用的东西都存在userInfo属性里
+    QRCodeSrc: ''
   },
 
   /**
@@ -80,6 +81,21 @@ Page({
   },
 
   testFunction: function(){
-    console.log(this.data)
+    _this = this
+    wx.cloud.callFunction({
+      name: "createQRCode",
+      data: {
+        type: "qr"
+      },
+      success: res => {
+        console.log(res.result)
+        _this.setData({
+          QRCodeSrc: res.result
+        })
+      },
+      fail: err => {
+        reject(err)
+      },
+    })
   }
 })

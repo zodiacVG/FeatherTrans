@@ -1,5 +1,6 @@
 // miniprogram/pages/selectQuestionsPage/selectQuestionsPage.js
 import Toast from '@vant/weapp/toast/toast'
+var _this = null
 Page({
 
   /**
@@ -29,7 +30,6 @@ Page({
       totalQuestionsNum:parseInt(options.totalQuestionsNum),
       needQuestionsNum:parseInt(options.needQuestionsNum),
     })
-    console.log(this.data)
     // 这里开始构建questionList，从数据库里面获取，有两个属性：问题+答案（数组）
     var temp_question = []
     wx.cloud.callFunction({ //用云函数测试
@@ -45,14 +45,39 @@ Page({
         this.setData({
           questionList:temp_question,
         })
-        console.log(this.data.questionList)
       },
     })
 
   },
   
-  confirmSubmint: function(){
-    var temp_questionList = this.data.questionList;
+  confirmSubmit: function(){
+    _this = this
+    wx.requestSubscribeMessage({
+      tmplIds: ['Al5lWrv7uFR1hQf1BBlNGOSmHivCeKkTUTCegisgn_k'],
+      success(res) {
+        console.log(res)
+        if(res.Al5lWrv7uFR1hQf1BBlNGOSmHivCeKkTUTCegisgn_k == 'accept'){
+          _this.comfirmSubmitDetail()
+        }
+        else{
+          wx.switchTab({
+            url: '../index/index',
+          })
+          wx.showToast({
+            title: '不同意就爬',
+            duration: 5000,
+          })
+        }     
+      },
+      fail(err) {
+        console.log(err);
+      }
+    })
+   
+  },
+  comfirmSubmitDetail: function(){
+    _this = this
+    var temp_questionList = _this.data.questionList;
     var flag= true;
     for(var i=0;i<temp_questionList.length;i++){
       if(temp_questionList[i].radio==0){
@@ -61,14 +86,13 @@ Page({
       }
     }
     if(flag==true){
-      const _this=this
       const cloudPath = `my-images`+Date.now()+getApp().globalData.openid
       console.log(_this.data.fileSource)
       wx.cloud.uploadFile({
         cloudPath: cloudPath,
         filePath: _this.data.fileSource,
         success: res => {
-          this.setData({
+          _this.setData({
             fileID:res.fileID
           })
           const db=wx.cloud.database()
@@ -89,7 +113,6 @@ Page({
               wx.navigateTo({ //跳转至上传完成界面
                 url: '../uploadFinishPage/uploadFinishPage?recordID='+res._id,
               })
-              console.log(res)
             },
             fail: e => {
               console.log(e)
@@ -112,7 +135,6 @@ Page({
       })
     }
   },
-
   onChange: function(event){
     var idx = parseInt(event.target.dataset.idx)
     var temp_questionList = this.data.questionList

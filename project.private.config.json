@@ -19,10 +19,10 @@
           "query": ""
         },
         {
-          "name": "打开分享页面",
-          "pathName": "pages/shareOpenPage/shareOpenPage",
-          "query": "recordID=cbddf0af6099294f07984f7017eec077",
-          "scene": 1007
+          "name": "pages/UserSharedFile/sharedFile",
+          "pathName": "pages/UserSharedFile/sharedFile",
+          "query": "",
+          "scene": null
         },
         {
           "name": "pages/selectQuestionsPage/selectQuestionsPage",
@@ -31,51 +31,8 @@
           "scene": null
         },
         {
-          "name": "pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage",
-          "pathName": "pages/uploadQuestionFileReadyPage/uploadQuestionFileReadyPage",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/downloadQuestionFile",
-          "pathName": "pages/downloadQuestionFile",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/downloadQuestionFile/downloadQuestionFile",
-          "pathName": "pages/downloadQuestionFile/downloadQuestionFile",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/shareOpenPage/shareOpenPage",
-          "pathName": "pages/shareOpenPage/shareOpenPage",
-          "query": "recordID=cbddf0af6099294f07984f7017eec077",
-          "scene": null
-        },
-        {
-          "name": "个人页面",
-          "pathName": "pages/MyPage/MyPage",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/UserSharedFile/sharedFile",
-          "pathName": "pages/UserSharedFile/sharedFile",
-          "query": "recordID=cbddf0af6099294f07984f7017eec077",
-          "scene": null
-        },
-        {
-          "name": "上传准备界面",
-          "pathName": "pages/upload_ready/upload_ready",
-          "query": "filePath=cloud://env1-uhwk6.656e-env1-uhwk6-1305427049/my-images1619877709247oVM9D5bOsiRu5w6JkEiHNCPB-IyU&fileType=image&fileSize=369845",
-          "scene": null
-        },
-        {
-          "name": "上传完毕准备分分享页面",
-          "pathName": "pages/uploadFinishPage/uploadFinishPage",
-          "query": "recordID=79550af260a7574c1896300676684b9d",
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
           "scene": null
         }
       ]
