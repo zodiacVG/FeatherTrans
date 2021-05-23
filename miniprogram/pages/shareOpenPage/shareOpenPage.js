@@ -121,9 +121,13 @@ Page({
   },
   downloadFile: function(){
     _this = this
+    wx.showLoading({
+      title: '正在下载',
+    })
     wx.cloud.downloadFile({
       fileID: this.data.fileID,
       success: res => {
+        wx.hideLoading()
         this.setData({
           filePath: res.tempFilePath
         })

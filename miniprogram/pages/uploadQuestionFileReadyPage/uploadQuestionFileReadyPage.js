@@ -75,7 +75,7 @@ Page({
     }
     wx.navigateTo({
       url: '../selectQuestionsPage/selectQuestionsPage?filePath='+this.data.fileSource+
-      '&fileType='+this.data.fileType+'&shareName'+this.data.shareNameValue+'&downloadDateLimit'+this.data.showDateLimit+'&totalQuestionsNum='+this.data.totalQuestionsNum+
+      '&fileType='+this.data.fileType+'&shareName='+this.data.shareNameValue+'&downloadDateLimit'+this.data.showDateLimit+'&totalQuestionsNum='+this.data.totalQuestionsNum+
       '&needQuestionsNum='+this.data.needQuestionsNum
     })
   },

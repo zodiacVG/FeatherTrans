@@ -97,6 +97,7 @@ Page({
           const todos=db.collection('question_files')
           todos.add({
             data:{
+              shareName:_this.data.shareName,
               fileID:res.fileID,
               uploadDate:Date.now(),
               downloadDateLimit:_this.data.downloadDateLimit, 
@@ -107,7 +108,7 @@ Page({
             },
             success: res => {
               wx.navigateTo({ //跳转至上传完成界面
-                url: '../uploadFinishPage/uploadFinishPage?recordID='+res._id+'&shareType=question'+'&shareNmae='+_this.data.shareName,
+                url: '../uploadFinishPage/uploadFinishPage?recordID='+res._id+'&shareType=question'+'&shareName='+_this.data.shareName,
               })
             },
             fail: e => {

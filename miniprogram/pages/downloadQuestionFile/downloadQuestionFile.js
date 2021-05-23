@@ -45,6 +45,9 @@ Page({
    */
   onLoad: function (options) {
     _this = this
+    this.setData({
+      recordID:options.recordID
+    })
     wx.showLoading({
       title: '加载中',
     })
@@ -66,10 +69,6 @@ Page({
   },
   InitalConditionCheck(){
     _this = this
-    this.setData({
-      // recordID: options.recordID 先随便给个测试数据跑通
-      recordID: '79550af260a3ddde17dd907c601b9be3'
-    })
     todos.doc(this.data.recordID).get({ //云数据库里获取文件数据
       success: (res) => {
         this.setData({
