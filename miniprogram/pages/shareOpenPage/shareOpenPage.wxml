@@ -19,20 +19,23 @@
   </view>
 
 
-  <van-button class="submitButton" round type="primary" bindtap="downloadSharedFile" disabled="{{isButtonForbidden}}">{{buttonText}}
+  <van-button class="submitButton" round type="primary" bindtap="downloadSharedFile" disabled="{{isButtonForbidden}}">
+    {{buttonText}}
   </van-button>
 
-  <image class="previewImage" width="100"   height="100" src="{{filePath}}" bindtap="previewImage" mode="aspectFill" />
+  <image class="previewImage" width="100" height="100" src="{{filePath}}" bindtap="previewImage" mode="aspectFill" />
 
 </view>
 
 <van-action-sheet show="{{ actionSheetShow }}" actions="{{ actions }}" bind:close="actionShwwtOnClose"
   bind:select="actionSheetOnSelect" />
-<van-popup show="{{ showPasswordPop }}" bind:close="closePasswordPop" closeable="{{true}}"
-  close-on-click-overlay="{{false}}">
-  <van-tag type="primary">请输入密码</van-tag>
+<van-popup round custom-style="width:80%;padding:50rpx 30rpx 50rpx 30rpx" show="{{ showPasswordPop }}"
+  bind:close="closePasswordPop" closeable="{{true}}" close-on-click-overlay="{{false}}">
+  <van-tag class="passwordInput" type="primary">请输入密码</van-tag>
   <van-field value="{{ enter_password }}" placeholder="请输入提取密码" border="{{ false }}"
     bind:change="enterPasswordChange" />
   <van-tag type="primary" wx:if="{{is_password_false}}">密码错误<text>\n</text>剩余输入次数:{{surplus_enter_num}}</van-tag>
-  <van-button type="default" bind:click="confirmEnterPassword">确认</van-button>
+  <view class="buttonView">
+  <van-button type="info" round bind:click="confirmEnterPassword">确认</van-button>
+  </view>
 </van-popup>
