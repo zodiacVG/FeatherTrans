@@ -107,7 +107,7 @@ Page({
             },
             success: res => {
               wx.navigateTo({ //跳转至上传完成界面
-                url: '../uploadFinishPage/uploadFinishPage?recordID='+res._id,
+                url: '../uploadFinishPage/uploadFinishPage?recordID='+res._id+'&shareType=question'+'&shareNmae='+_this.data.shareName,
               })
             },
             fail: e => {

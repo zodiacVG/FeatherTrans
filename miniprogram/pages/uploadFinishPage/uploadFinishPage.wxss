@@ -8,7 +8,7 @@
 .fileNameView{
   width: 80%;
   border-radius: 25px;
-  background-color:#78a1f363;
+  background-color:#578fff69;
   display:flex;
   flex-direction: column;
   align-items: center;

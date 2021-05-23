@@ -14,6 +14,9 @@ Page({
     isButtonForbidden:false, //按钮是否被禁用
     res: '',
     recordID: '',
+    shareName:'',
+    fileSize:0,
+    fileType:'',
     buttonText: '下载文件', //要是不符合条件就会变成其他文字 todo 最好按钮颜色也一并变化
     fileID: '',
     filePath: '',
@@ -38,8 +41,7 @@ Page({
     _this = this
     this.onGetOpenid()
     this.setData({
-      // recordID: options.recordID
-      recordID: 'cbddf0af608d5243053ab51d58342eee'
+      recordID: options.recordID
     })
     console.log("recordID="+options.recordID)
     wx.cloud.callFunction({ //用云函数测试
@@ -62,8 +64,10 @@ Page({
         //开始给页面元素赋值
         var oneDay = 24 * 60 * 60 * 1000
         var res = this.data.res
-        console.log('走到赋值前了')
         this.setData({
+          shareName:res.shareName,
+          fileSize:res.fileSize,
+          fileType:res.fileType,
           downloadDateLimit: res.uploadDate + res.downloadDateLimit * oneDay,
           downloadNumLimit: res.downloadNumLimit,
           downloadNums: res.downloadNums,
@@ -123,7 +127,7 @@ Page({
         this.setData({
           filePath: res.tempFilePath
         })
-        //还应当减少文件的下载次数
+        //还应当增加文件的下载次数
         wx.cloud.callFunction({
           name:'reduceDownloadTimes',
           data:{

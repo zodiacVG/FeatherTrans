@@ -6,7 +6,8 @@ Page({
    */
   data: {
     recordID:'',
-    shareName:''
+    shareName:'',
+    shareType:'',
   },
 
   /**
@@ -15,14 +16,15 @@ Page({
   onLoad: function (options) {
     this.setData({
       recordID:options.recordID,
-      shareName:options.shareName
+      shareName:options.shareName,
+      shareType:options.shareType
     })
   },
   onShareAppMessage(){ //todo 需要完成分享进入页面
     return{
       title:'给你分享了一个文件',
       desc:'分享页面内容',
-      path:'/pages/shareOpenPage/shareOpenPage?recordID='+this.data.recordID
+      path:'/pages/shareOpenPage/shareOpenPage?recordID='+this.data.recordID+'&Sharetype='+this.data.shareType
     }
   }
 })

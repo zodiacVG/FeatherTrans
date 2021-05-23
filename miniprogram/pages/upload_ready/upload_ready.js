@@ -75,15 +75,17 @@ Page({
           data:{
             fileID:res.fileID,
             shareName:_this.data.shareNameValue,
+            fileSize:_this.data.fileSize,
+            fileType:_this.data.fileType,
             uploadDate:Date.now(),
-            dowmloadPassword:_this.data.passwordValue,
+            downloadPassword:_this.data.passwordValue,
             downloadDateLimit:_this.data.downloadDateLimit,
             downloadNumLimit:_this.data.downloadNumLimit, 
             downloadNums:0 //默认下载次数是0
           },
           success: res => {
             wx.navigateTo({ //跳转至上传完成界面
-              url: '../uploadFinishPage/uploadFinishPage?recordID='+res._id+"&shareName="+_this.data.shareNameValue,
+              url: '../uploadFinishPage/uploadFinishPage?recordID='+res._id+"&shareName="+_this.data.shareNameValue+'&shareType=normal',
             })
             console.log(res)
           },
