@@ -84,6 +84,7 @@ Page({
             downloadNums:0 //默认下载次数是0
           },
           success: res => {
+            console.log(_this.data.shareNameValue)
             wx.navigateTo({ //跳转至上传完成界面
               url: '../uploadFinishPage/uploadFinishPage?recordID='+res._id+"&shareName="+_this.data.shareNameValue+'&shareType=normal',
             })

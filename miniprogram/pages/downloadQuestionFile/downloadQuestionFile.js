@@ -68,7 +68,7 @@ Page({
     _this = this
     this.setData({
       // recordID: options.recordID 先随便给个测试数据跑通
-      recordID: '79550af260a3ddde17dd907c601b9be3'
+      recordID: 'cbddf0af60a9df0f0ac803fb3debf2b1'
     })
     todos.doc(this.data.recordID).get({ //云数据库里获取文件数据
       success: (res) => {
@@ -164,7 +164,7 @@ Page({
       return
     }
    // 没有密码的情况
-    if(this.data.downloadPassword==''){
+    if(this.data.downloadPassword=='' || this.data.downloadPassword==undefined){
       this.setData({
         showQuestionPop:true
       })
