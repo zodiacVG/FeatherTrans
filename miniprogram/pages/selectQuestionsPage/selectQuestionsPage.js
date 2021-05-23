@@ -1,4 +1,3 @@
-// miniprogram/pages/selectQuestionsPage/selectQuestionsPage.js
 import Toast from '@vant/weapp/toast/toast'
 var _this = null
 Page({
@@ -12,12 +11,9 @@ Page({
     questionList:[],
     fileSource:'',
     fileType:'',
-    passwordValue:'',
-    downloadNumLimit:-1, //-1代表没有次数限制
-    showTimeLimit:false, //
     downloadDateLimit:7, //默认下载期限是7天
-    showDateLimit:false,
-    fileID:'' //云数据库里的文件id
+    fileID:'', //云数据库里的文件id
+    shareName:''
   },
 
   /**
@@ -29,6 +25,8 @@ Page({
       fileType:options.fileType,
       totalQuestionsNum:parseInt(options.totalQuestionsNum),
       needQuestionsNum:parseInt(options.needQuestionsNum),
+      shareName:options.shareName,
+      downloadDateLimit:options.downloadDateLimit
     })
     // 这里开始构建questionList，从数据库里面获取，有两个属性：问题+答案（数组）
     var temp_question = []
@@ -101,9 +99,7 @@ Page({
             data:{
               fileID:res.fileID,
               uploadDate:Date.now(),
-              downloadPassword:_this.data.passwordValue,
-              downloadDateLimit:_this.data.downloadDateLimit,
-              downloadNumLimit:_this.data.downloadNumLimit, 
+              downloadDateLimit:_this.data.downloadDateLimit, 
               downloadNums:0, 
               needQuestionsNum:_this.data.needQuestionsNum,
               questionList: _this.data.questionList,

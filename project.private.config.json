@@ -25,9 +25,9 @@
           "scene": 1007
         },
         {
-          "name": "pages/selectQuestionsPage/selectQuestionsPage",
+          "name": "选择问题界面",
           "pathName": "pages/selectQuestionsPage/selectQuestionsPage",
-          "query": "",
+          "query": "filePath=cloud://env1-uhwk6.656e-env1-uhwk6-1305427049/feather_background.jpg&fileType=image&downloadDateLimit=7&shareName=textname&totalQuestionsNum=5&needQuestionsNum=3",
           "scene": null
         },
         {
@@ -75,6 +75,13 @@
         {
           "name": "pages/index/index",
           "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/uploadFinishPage/uploadFinishPage",
+          "pathName": "pages/uploadFinishPage/uploadFinishPage",
+          "query": "recordID=28ee4e3e609e7e7118a478fb67e2c019&shareName=testname",
           "scene": null
         }
       ]

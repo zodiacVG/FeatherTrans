@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    recordID:''
+    recordID:'',
+    shareName:''
   },
 
   /**
@@ -13,7 +14,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      recordID:options.recordID
+      recordID:options.recordID,
+      shareName:options.shareName
     })
   },
   onShareAppMessage(){ //todo 需要完成分享进入页面

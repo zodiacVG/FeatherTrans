@@ -48,17 +48,11 @@ Page({
       totalQuestionsNum:e.detail,
       needQuestionsNum:e.detail
     })
-    this.selectComponent('#needQuestionsNumSlider').init({
-      ...this.data.data
-    })
   },
 
   onDragEndTotalQuestion(){
     this.setData({
       needQuestionsNum:this.data.totalQuestionsNum
-    })
-    this.selectComponent('#needQuestionsNumSlider').init({
-      ...this.data.data
     })
   },
 
