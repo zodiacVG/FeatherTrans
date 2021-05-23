@@ -21,10 +21,19 @@ Page({
     })
   },
   onShareAppMessage(){ //todo 需要完成分享进入页面
-    return{
-      title:'给你分享了一个文件',
-      desc:'分享页面内容',
-      path:'/pages/shareOpenPage/shareOpenPage?recordID='+this.data.recordID+'&Sharetype='+this.data.shareType
+    if(this.data.shareType=='normal'){
+      return{
+        title:'给你分享了一个文件',
+        desc:'分享页面内容',
+        path:'/pages/shareOpenPage/shareOpenPage?recordID='+this.data.recordID
+      }
+    }else{
+      return{
+        title:'给你分享了一个文件',
+        desc:'分享页面内容',
+        path:'/pages/downloadQuestionFile/downloadQuestionFile?recordID='+this.data.recordID
+      }
     }
+    
   }
 })

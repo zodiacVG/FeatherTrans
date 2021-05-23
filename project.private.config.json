@@ -19,9 +19,9 @@
           "query": ""
         },
         {
-          "name": "打开分享页面",
+          "name": "打开普通文件分享页面",
           "pathName": "pages/shareOpenPage/shareOpenPage",
-          "query": "recordID=79550af260a9c6131943bf536a243b61&shareType=normal",
+          "query": "recordID=28ee4e3e60a9c5821b76c78d4bcfdbd7",
           "scene": 1007
         },
         {
@@ -37,16 +37,10 @@
           "scene": null
         },
         {
-          "name": "pages/downloadQuestionFile",
-          "pathName": "pages/downloadQuestionFile",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/downloadQuestionFile/downloadQuestionFile",
+          "name": "下载问答文件界面",
           "pathName": "pages/downloadQuestionFile/downloadQuestionFile",
-          "query": "",
-          "scene": null
+          "query": "recordID=b00064a760aa04571a09b9b246312571",
+          "scene": 1007
         },
         {
           "name": "pages/shareOpenPage/shareOpenPage",

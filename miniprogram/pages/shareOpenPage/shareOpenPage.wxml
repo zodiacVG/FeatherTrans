@@ -22,7 +22,7 @@
   <van-button class="submitButton" round type="primary" bindtap="downloadSharedFile" disabled="{{isButtonForbidden}}">{{buttonText}}
   </van-button>
 
-  <image class="previewImage" width="100" height="100" src="{{filePath}}" bindtap="previewImage" />
+  <image class="previewImage" width="100"   height="100" src="{{filePath}}" bindtap="previewImage" mode="aspectFill" />
 
 </view>
 
