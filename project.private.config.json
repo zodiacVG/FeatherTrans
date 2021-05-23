@@ -77,6 +77,11 @@
           "pathName": "pages/uploadFinishPage/uploadFinishPage",
           "query": "recordID=28ee4e3e609e7e7118a478fb67e2c019&shareName=testname&shareType=question",
           "scene": null
+        },
+        {
+          "name": "pages/downloadQuestionFile/downloadQuestionFile",
+          "pathName": "pages/downloadQuestionFile/downloadQuestionFile",
+          "scene": null
         }
       ]
     }

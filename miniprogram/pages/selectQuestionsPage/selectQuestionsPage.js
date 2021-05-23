@@ -52,6 +52,13 @@ Page({
   
   confirmSubmit: function(){
     _this = this
+    var temp_questionList = _this.data.questionList;
+    for(var i=0;i<temp_questionList.length;i++){
+      if(temp_questionList[i].radio==0){
+        Toast.fail('问题'+(i+1)+'非空');
+        return
+      }
+    }
     wx.requestSubscribeMessage({
       tmplIds: ['Al5lWrv7uFR1hQf1BBlNGOSmHivCeKkTUTCegisgn_k'],
       success(res) {
@@ -77,64 +84,54 @@ Page({
   },
   comfirmSubmitDetail: function(){
     _this = this
-    var temp_questionList = _this.data.questionList;
-    var flag= true;
-    for(var i=0;i<temp_questionList.length;i++){
-      if(temp_questionList[i].radio==0){
-        Toast.fail('问题'+(i+1)+'非空');
-          flag=false;
+    const cloudPath = `my-images`+Date.now()+getApp().globalData.openid
+    console.log(_this.data.fileSource)
+    wx.cloud.uploadFile({
+      cloudPath: cloudPath,
+      filePath: _this.data.fileSource,
+      success: res => {
+        _this.setData({
+          fileID:res.fileID
+        })
+        const db=wx.cloud.database()
+        const todos=db.collection('question_files')
+        todos.add({
+          data:{
+            shareName:_this.data.shareName,
+            fileID:res.fileID,
+            uploadDate:Date.now(),
+            downloadDateLimit:_this.data.downloadDateLimit, 
+            downloadNums:0, 
+            fileType:_this.data.fileType,
+            fileSize:_this.data.fileSize,
+            needQuestionsNum:_this.data.needQuestionsNum,
+            questionList: _this.data.questionList,
+            accessUsersList: []
+          },
+          success: res => {
+            wx.navigateTo({ //跳转至上传完成界面
+              url: '../uploadFinishPage/uploadFinishPage?recordID='+res._id+'&shareType=question'+'&shareName='+_this.data.shareName,
+            })
+          },
+          fail: e => {
+            console.log(e)
+          }
+        })
+        console.log('[上传文件] 成功：', res)
+        console.log('filepath'+fileSource)
+        console.log('fileType'+fileType)
+      },
+      fail: e => {
+        console.error('[上传文件] 失败：', e)
+        wx.showToast({
+          icon: 'none',
+          title: '上传失败',
+        })
+      },
+      complete: () => {
+        wx.hideLoading()
       }
-    }
-    if(flag==true){
-      const cloudPath = `my-images`+Date.now()+getApp().globalData.openid
-      console.log(_this.data.fileSource)
-      wx.cloud.uploadFile({
-        cloudPath: cloudPath,
-        filePath: _this.data.fileSource,
-        success: res => {
-          _this.setData({
-            fileID:res.fileID
-          })
-          const db=wx.cloud.database()
-          const todos=db.collection('question_files')
-          todos.add({
-            data:{
-              shareName:_this.data.shareName,
-              fileID:res.fileID,
-              uploadDate:Date.now(),
-              downloadDateLimit:_this.data.downloadDateLimit, 
-              downloadNums:0, 
-              fileType:_this.data.fileType,
-              fileSize:_this.data.fileSize,
-              needQuestionsNum:_this.data.needQuestionsNum,
-              questionList: _this.data.questionList,
-              accessUsersList: []
-            },
-            success: res => {
-              wx.navigateTo({ //跳转至上传完成界面
-                url: '../uploadFinishPage/uploadFinishPage?recordID='+res._id+'&shareType=question'+'&shareName='+_this.data.shareName,
-              })
-            },
-            fail: e => {
-              console.log(e)
-            }
-          })
-          console.log('[上传文件] 成功：', res)
-          console.log('filepath'+fileSource)
-          console.log('fileType'+fileType)
-        },
-        fail: e => {
-          console.error('[上传文件] 失败：', e)
-          wx.showToast({
-            icon: 'none',
-            title: '上传失败',
-          })
-        },
-        complete: () => {
-          wx.hideLoading()
-        }
-      })
-    }
+    })
   },
   onChange: function(event){
     var idx = parseInt(event.target.dataset.idx)

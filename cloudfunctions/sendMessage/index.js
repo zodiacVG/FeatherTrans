@@ -8,9 +8,10 @@ exports.main = async (event, context) => {
     var messageContent = event.messageContent
     var senderName = event.senderName
     var sendTime = event.sendTime
+    var fileID = event.fileID
     const result = await cloud.openapi.subscribeMessage.send({
         "touser": accepterID, // 发送人的ID
-        "page": 'pages/index/index',
+        "page": 'pages/MyPage/MyPage?fileID='+fileID+'&userInfo='+accepterID,
         "lang": 'zh_CN',
         "templateId": 'Al5lWrv7uFR1hQf1BBlNGOSmHivCeKkTUTCegisgn_k', // 模板ID
         "miniprogramState": 'developer',

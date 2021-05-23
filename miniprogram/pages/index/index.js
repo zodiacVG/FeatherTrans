@@ -88,9 +88,7 @@ Page({
       name: 'login',
       data: {},
       success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
         app.globalData.openid = res.result.openid
-        console.log(app.globalData)
       },
       fail: err => {
         console.error('[云函数] [login] 调用失败', err)
@@ -119,7 +117,6 @@ Page({
   // 上传图片
   chooseByAlbum: function () { //从手机相册选择
     // 选择图片
-    console.log("从手机相册选择被调用")
     wx.chooseImage({
       count: 1,
       sizeType: ['compressed'],
@@ -128,7 +125,6 @@ Page({
         wx.showLoading({
           title: '上传中',
         })
-        console.log(res)
         const filePath = res.tempFilePaths[0]
         const fileSize = res.tempFiles[0].size
         if(_this.data.isQuestionFile==false){
@@ -170,29 +166,24 @@ Page({
   },
 
   onCloseActionSheet() {
-    console.log('调用了！')
     this.setData({ 
       actionSheetShow: false
     });
   },
 
   onCloseQuestionActionSheet() {
-    console.log('也算关闭')
     this.setData({ 
       questionActionSheetShow: false
     });
   },
 
   onSelectActionSheet(event) {
-    console.log(event.detail);
     var resultFromActionSheet=event.detail;
     if(resultFromActionSheet.name=="从手机相册选择"){
-      console.log('从手机相册选择')
       this.chooseByAlbum()
       return 
     }
     if(resultFromActionSheet.name="从聊天记录选择"){
-      console.log("从聊天记录选择别调用")
       wx.chooseMessageFile({
         count: 10,
         type: 'all',
@@ -215,7 +206,6 @@ Page({
     })
     console.log(this.activeTab)
     if(this.data.activeTab==1){
-      console.log('成了！')
       wx.reLaunch({
         url: '../MyPage/MyPage',
       })
