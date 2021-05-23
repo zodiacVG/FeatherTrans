@@ -9,32 +9,32 @@ const uploadFile = async function(arrayBuffer,path) {
     cloudPath: path,
     fileContent: arrayBuffer,
   })
-  
   return fileID
 }
-
-
 
 // 云函数入口函数
 exports.main = async(event, context) => {
   const wxContext = cloud.getWXContext()
-  const type = event.type
-  log.info({type})
-
-  let result
-
+  var type = event.type
+  var shareType = event.shareType
+  var recordID = event.recordID
+  var my_filePath = ''
+  if(shareType=='normal'){
+    my_filePath = 'pages/shareOpenPage/shareOpenPage?recordID='
+  }
+  else{
+    my_filePath = 'pages/downloadQuestionFile/downloadQuestionFile?recordID='
+  }
   switch (type) {
     case "qr":
       try {
         let {
           buffer
         } = await cloud.openapi.wxacode.createQRCode({
-          path: 'page/index/index',
+          path: my_filePath+recordID,
           width: 430
         })
-
-        fileID = await uploadFile(buffer,"qr.jpg")
-        
+        fileID = await uploadFile(buffer,recordID+".jpg")    
         return fileID
       } catch (err) {
         log.error({
@@ -44,18 +44,16 @@ exports.main = async(event, context) => {
       }
       break;
     case 'miniapp':
-
       try {
         let {
           buffer
         }= await cloud.openapi.wxacode.get({
-          path: 'page/index/index',
+          path: my_filePath+recordID,
           width: 430,
             auto_color:true,
             is_hyaline:true
         })
-        fileID = await uploadFile(buffer,"miniapp11.jpg")
-        
+        fileID = await uploadFile(buffer,recordID+".jpg")        
         return fileID
       } catch (err) {
         log.error({
@@ -64,20 +62,16 @@ exports.main = async(event, context) => {
         return err
       }
       break;
-
-
-
     case "unlimited":
-
       try {
         let {
           buffer
         } = await cloud.openapi.wxacode.getUnlimited({
           scene:"id=1",
-          path: 'page/index/index',
+          path: my_filePath+recordID,
           width: 430
         })
-        fileID = await uploadFile(buffer,"unlimited.jpg")
+        fileID = await uploadFile(buffer,recordID+".jpg")
         
         return fileID
       } catch (err) {
@@ -87,8 +81,5 @@ exports.main = async(event, context) => {
         return err
       }
       break;
-
   }
-
-
 }

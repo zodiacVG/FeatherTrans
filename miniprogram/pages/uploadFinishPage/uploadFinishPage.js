@@ -1,4 +1,5 @@
 // miniprogram/pages/uploadFinishPage/uploadFinishPage.js
+var _this = null
 Page({
 
   /**
@@ -8,6 +9,7 @@ Page({
     recordID:'',
     shareName:'',
     shareType:'',
+    QRCodeSrc: ''
   },
 
   /**
@@ -15,9 +17,12 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      recordID:options.recordID,
+      // recordID:options.recordID,
+      recordID: '79550af260aa134d19663b732d892b5e', //暂时这么代替
       shareName:options.shareName,
-      shareType:options.shareType
+      // shareType:options.shareType
+      shareType: 'question'
+    
     })
   },
   onShareAppMessage(){ //todo 需要完成分享进入页面
@@ -35,5 +40,24 @@ Page({
       }
     }
     
+  },
+  createQRCode() {
+    _this = this
+    wx.cloud.callFunction({
+      name: "createQRCode",
+      data: {
+        type: "qr",
+        fileType: _this.data.shareType,
+        recordID: _this.data.recordID
+      },
+      success: res => {
+        _this.setData({
+          QRCodeSrc: res.result
+        })
+      },
+      fail: err => {
+        console.log('gg!')
+      },
+    })
   }
 })

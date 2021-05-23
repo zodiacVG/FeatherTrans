@@ -11,8 +11,7 @@ Page({
     userID: '',
     fileID: '',
     userInfo: {},
-    accessUsersList: [],// 需要调用的东西都存在userInfo属性里
-    QRCodeSrc: ''
+    accessUsersList: []// 需要调用的东西都存在userInfo属性里
   },
 
   /**
@@ -24,6 +23,7 @@ Page({
       userID: options.userInfo,
       fileID: options.fileID
     })
+    // 这个得改一下 得在点击事件才能触发
     db.collection('userInfo').where({
       _openid: this.data.userID
     })
@@ -62,7 +62,6 @@ Page({
           })
         }))}
         Promise.all(PromiseArr).then(res => {
-          console.log(temp_specific_User_list[0])
           for(var i=0;i<temp_accessUsersList.length;i++){
             for(var j=0;j<temp_specific_User_list.length;j++){
               if(temp_specific_User_list[j]._openid==temp_accessUsersList[i].userID){
@@ -80,22 +79,27 @@ Page({
     })
   },
 
-  testFunction: function(){
+  testFunction: function(){ // 这个函数随便删
     _this = this
-    wx.cloud.callFunction({
-      name: "createQRCode",
-      data: {
-        type: "qr"
+    wx.requestSubscribeMessage({
+      tmplIds: ['Al5lWrv7uFR1hQf1BBlNGOSmHivCeKkTUTCegisgn_k'],
+      success(res) {
+        if(res.Al5lWrv7uFR1hQf1BBlNGOSmHivCeKkTUTCegisgn_k == 'accept'){
+          wx.showToast({
+            title: '该文件还有持续消息！',
+            duration: 5000,
+          })
+        }
+        else{
+          wx.showToast({
+            title: '该文件爹不会再通知！',
+            duration: 5000,
+          })
+        }     
       },
-      success: res => {
-        console.log(res.result)
-        _this.setData({
-          QRCodeSrc: res.result
-        })
-      },
-      fail: err => {
-        reject(err)
-      },
+      fail(err) {
+        console.log(err);
+      }
     })
   }
 })

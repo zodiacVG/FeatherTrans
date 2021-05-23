@@ -44,19 +44,8 @@ Page({
       recordID: options.recordID
     })
     console.log("recordID="+options.recordID)
-    wx.cloud.callFunction({ //用云函数测试
-      name:'getFileDataFromCloud',
-      data:{
-        recordID:this.data.recordID
-      },
-      complete:(res)=>{
-        console.log("调用云函数成功")
-        console.log(res.result)
-      },
-    })
     todos.doc(this.data.recordID).get({ //云数据库里获取文件数据
       success: (res) => {
-        console.log('数据库里查到的数据' + res.data)
         this.setData({
           res: res.data,
           fileID: res.data.fileID
@@ -76,7 +65,6 @@ Page({
 
         //开始判断文件附加条件
         //判断下载次数
-        console.log('走到判断num了')
         if (res.downloadNumLimit != -1) { //等于-1说明没有设置限制
           if (res.downloadNumLimit <= res.downloadNums) { //限制次数等于实际下载次数
             this.setData({
@@ -87,7 +75,6 @@ Page({
           }
         }
         //判断日期
-        console.log('走到判断date了')
         if (res.downloadDateLimit * 24 * 60 * 60 * 1000 + res.uploadDate < Date.now()) { //超时了的话
           this.setData({
             buttonText: '超过下载期限',
@@ -101,7 +88,6 @@ Page({
         console.log(res)
       }
     })
-
   },
   downloadSharedFile() { //点击下载按钮之后
     if(this.data.isButtonForbidden==true){
@@ -191,7 +177,6 @@ Page({
       success: res => {
         console.log('[云函数] [login] user openid: ', res.result.openid)
         app.globalData.openid = res.result.openid
-        console.log(app.globalData)
       },
       fail: err => {
         console.error('[云函数] [login] 调用失败', err)
