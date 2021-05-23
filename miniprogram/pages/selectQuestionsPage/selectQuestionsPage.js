@@ -11,6 +11,7 @@ Page({
     questionList:[],
     fileSource:'',
     fileType:'',
+    fileSize:'',
     downloadDateLimit:7, //默认下载期限是7天
     fileID:'', //云数据库里的文件id
     shareName:''
@@ -23,6 +24,7 @@ Page({
     this.setData({
       fileSource:options.filePath,
       fileType:options.fileType,
+      fileSize:options.fileSize,
       totalQuestionsNum:parseInt(options.totalQuestionsNum),
       needQuestionsNum:parseInt(options.needQuestionsNum),
       shareName:options.shareName,
@@ -102,6 +104,8 @@ Page({
               uploadDate:Date.now(),
               downloadDateLimit:_this.data.downloadDateLimit, 
               downloadNums:0, 
+              fileType:_this.data.fileType,
+              fileSize:_this.data.fileSize,
               needQuestionsNum:_this.data.needQuestionsNum,
               questionList: _this.data.questionList,
               accessUsersList: []
@@ -139,30 +143,6 @@ Page({
     temp_questionList[idx].chooseAnswer = 0
     this.setData({
       questionList: temp_questionList
-    })
-  },
-
-  onChangeNumLimit(e){
-    this.setData({
-      downloadNumLimit:e.detail
-    })
-  },
-
-  onChangeDateLimit(e){
-    this.setData({
-      downloadDateLimit:e.detail
-    })
-  },
-
-  setTimeLimit(e){
-    this.setData({
-      showTimeLimit:e.detail
-    })
-  },
-
-  setPasswordShow(e){
-    this.setData({
-      showPasswordInput:e.detail
     })
   },
 

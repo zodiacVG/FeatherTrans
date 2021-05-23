@@ -37,16 +37,10 @@
           "scene": null
         },
         {
-          "name": "pages/downloadQuestionFile",
-          "pathName": "pages/downloadQuestionFile",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/downloadQuestionFile/downloadQuestionFile",
+          "name": "下载问答文件界面",
           "pathName": "pages/downloadQuestionFile/downloadQuestionFile",
-          "query": "",
-          "scene": null
+          "query": "recordID=b00064a760aa04571a09b9b246312571",
+          "scene": 1007
         },
         {
           "name": "pages/shareOpenPage/shareOpenPage",
