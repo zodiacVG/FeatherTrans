@@ -1,7 +1,7 @@
 <!--miniprogram/pages/sharedFile/sharedFile.wxml-->
 <view class="bodyContainer">
   <view class="shareInfoView" wx:for="{{ userQuestionList }}" wx:key="idx" wx:for-index="idx" wx:for-item="questionItem">
-    <view class="shareInfoTapableView" bindtap="toFileAccessUsers" data-idx="{{idx}}">
+    <view class="shareInfoTapableView" bindtap="toFileAccessUsers" data-index="{{idx}}">
       <van-image width="100rpx" height="100rpx" src="/images/icons/image.png"/>
       <view class="shareTextInfoView">
         <view class="shareNameText">{{questionItem.shareName}}</view>
