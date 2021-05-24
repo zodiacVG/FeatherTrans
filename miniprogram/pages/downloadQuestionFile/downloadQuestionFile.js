@@ -14,6 +14,9 @@ Page({
     isButtonForbidden:false, //按钮是否被禁用
     res: '',
     recordID: '',
+    shareName: '',
+    fileSize: 0,
+    fileType: '',
     buttonText: '下载文件', //要是不符合条件就会变成其他文字 todo 最好按钮颜色也一并变化
     fileID: '',
     filePath: '',
@@ -49,6 +52,7 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
+    console.log('调用login之前')
     wx.cloud.callFunction({
       name: 'login',
       data: {},
@@ -65,7 +69,6 @@ Page({
     })
   },
   InitalConditionCheck(){
-    _this = this
     todos.doc(this.data.recordID).get({ //云数据库里获取文件数据
       success: (res) => {
         this.setData({
@@ -90,11 +93,11 @@ Page({
         var oneDay = 24 * 60 * 60 * 1000
         var res = this.data.res
         this.setData({
+          shareName: res.shareName,
+          fileSize: res.fileSize,
+          fileType: res.fileType,
           downloadDateLimit: res.uploadDate + res.downloadDateLimit * oneDay,
-          downloadNumLimit: res.downloadNumLimit,
-          downloadNums: res.downloadNums,
           questionList: res.questionList,
-          downloadPassword: res.downloadPassword,
           needQuestionsNum: res.needQuestionsNum,
           accessUsersList: res.accessUsersList,
           ownerOpenID: res._openid
@@ -145,6 +148,7 @@ Page({
       },
       fail: (res) => {
         console.log('失败了')
+        console.log(res)
       }
     })
   },

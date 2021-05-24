@@ -18,11 +18,9 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      // recordID:options.recordID,
-      recordID: '79550af260aa134d19663b732d892b5e', //暂时这么代替
+      recordID:options.recordID,
       shareName: options.shareName,
-      // shareType:options.shareType
-      shareType: 'question'
+      shareType:options.shareType,
 
     })
   },
