@@ -42,6 +42,10 @@ Page({
    */
   onLoad: function (options) {
     _this = this
+    this.setData({
+      recordID: options.recordID //先随便给个测试数据跑通
+      // recordID: '79550af260aa134d19663b732d892b5e'
+    })
     wx.showLoading({
       title: '加载中',
     })
@@ -61,11 +65,6 @@ Page({
     })
   },
   InitalConditionCheck(){
-    _this = this
-    this.setData({
-      // recordID: options.recordID //先随便给个测试数据跑通
-      recordID: '79550af260aa134d19663b732d892b5e'
-    })
     todos.doc(this.data.recordID).get({ //云数据库里获取文件数据
       success: (res) => {
         this.setData({
