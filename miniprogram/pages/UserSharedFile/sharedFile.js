@@ -54,9 +54,9 @@ Page({
   },
 
   toFileAccessUsers: function(event){
-    var idx = event.target.dataset.index
+    var idx = event.currentTarget.dataset.myindex
     console.log(idx)
-    console.log(event.target)
+    console.log(event)
     console.log(this.data.userQuestionList[idx])
     wx.navigateTo({
       url: '../fileAccessUsers/fileAccessUsers?fileID='+this.data.userQuestionList[idx]._id+'&userInfo='+this.data.userID
