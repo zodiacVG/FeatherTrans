@@ -48,3 +48,11 @@
   margin-top: 40rpx;
   border-radius: 25rpx;
 }
+
+.passwordInput{
+  margin-left: 30rpx;
+}
+
+.buttonView{
+  text-align: center;
+}
