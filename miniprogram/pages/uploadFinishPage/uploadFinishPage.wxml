@@ -10,7 +10,4 @@
     <van-button id="firstButton" round type="info" open-type="share">分享给朋友</van-button>
     <van-button id="secondButton" round type="info" bind:click="createQRCode">生成二维码</van-button>
   </view>
-  <van-image use-error-slot src="{{QRCodeSrc}}" width="100" height="100">
-  <text slot="error">加载失败</text>
-  </van-image>
 </view>

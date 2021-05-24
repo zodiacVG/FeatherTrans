@@ -1,10 +1,12 @@
 <!--miniprogram/pages/fileAccessUsers/fileAccessUsers.wxml-->
-<text>miniprogram/pages/fileAccessUsers/fileAccessUsers.wxml</text>
-<view wx:for="{{ accessUsersList }}" wx:key="idx" wx:for-index="idx" wx:for-item="UserItem">
-  <van-tag mark type="primary">用户{{ idx+1 }}为：</van-tag>
-  <van-tag mark type="primary">{{ UserItem.userID }}</van-tag>
-  <text>\n</text>
-  <van-tag mark type="primary">答对数 / 所有题目 {{UserItem.userRightNum}} / {{UserItem.userTotalNum}}</van-tag>
-  <text>\n</text>
-  <van-button type="default" bind:click="testFunction" data-idx="{{idx}}">test</van-button>
+<view class="bodyContainer">
+  <view class="shareInfoView" wx:for="{{ accessUsersList }}" wx:key="idx" wx:for-index="idx" wx:for-item="UserItem">
+    <van-image class="userAvatar" width="100rpx" height="100rpx" round src="{{UserItem.userInfo.avatarUrl}}" />
+    <text class="userNickName">{{UserItem.userInfo.nickName}}</text>
+    <text class="littleTitle">答对数 / 所有题目</text>
+    <text class="questionNum">{{UserItem.userRightNum}} / {{UserItem.userTotalNum}}</text>
+    <van-button class="subButton" type="default" bind:click="testFunction" data-idx="{{idx}}"></van-button>
+  </view>
+
+
 </view>

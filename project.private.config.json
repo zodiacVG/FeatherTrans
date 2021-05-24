@@ -39,7 +39,7 @@
         {
           "name": "下载问答文件界面",
           "pathName": "pages/downloadQuestionFile/downloadQuestionFile",
-          "query": "recordID=b00064a760aa04571a09b9b246312571",
+          "query": "recordID=28ee4e3e60ab848f1c041c536498c82f",
           "scene": 1007
         },
         {
@@ -81,6 +81,7 @@
         {
           "name": "pages/downloadQuestionFile/downloadQuestionFile",
           "pathName": "pages/downloadQuestionFile/downloadQuestionFile",
+          "query": "",
           "scene": null
         }
       ]

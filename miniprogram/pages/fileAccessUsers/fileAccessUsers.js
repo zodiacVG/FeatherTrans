@@ -92,7 +92,7 @@ Page({
         }
         else{
           wx.showToast({
-            title: '该文件爹不会再通知！',
+            title: '该文件不会再通知！',
             duration: 5000,
           })
         }     
