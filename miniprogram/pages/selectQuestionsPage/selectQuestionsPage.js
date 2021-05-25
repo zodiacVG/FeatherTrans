@@ -84,6 +84,9 @@ Page({
   },
   comfirmSubmitDetail: function(){
     _this = this
+    wx.showLoading({
+      title:'正在上传'
+    })
     const cloudPath = `my-images`+Date.now()+getApp().globalData.openid
     console.log(_this.data.fileSource)
     wx.cloud.uploadFile({

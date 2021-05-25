@@ -42,6 +42,9 @@ Page({
   },
   createQRCode() {
     _this = this
+    wx.showLoading({
+      title: '正在生成',
+    })
     wx.cloud.callFunction({
       name: "createQRCode",
       data: {
@@ -50,6 +53,9 @@ Page({
         recordID: _this.data.recordID
       },
       success: res => {
+        wx.hideLoading({
+          success: (res) => {},
+        })
         _this.setData({
           QRCodeSrc: res.result
         })

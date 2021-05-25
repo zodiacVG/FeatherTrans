@@ -117,7 +117,8 @@ Page({
             url: '../index/index',
           })
           wx.showToast({
-            title: '辣鸡答过了 爬',
+            title: '已经回答过了',
+            icon:'error',
             duration: 5000,
           })
           wx.hideLoading({
@@ -270,7 +271,7 @@ Page({
         url: '../index/index'
       })
       wx.showToast({
-        title: '题目错太多，你不太行！',
+        title: '题目错太多',
         duration: 5000,
       })
     }

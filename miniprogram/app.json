@@ -37,15 +37,15 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "text",
-        "iconPath": "images/icons/发送.png",
-        "selectedIconPath": "images/icons/发送.png"
+        "text": "分享",
+        "iconPath": "images/icons/trans_normal.png",
+        "selectedIconPath": "images/icons/trans_selected.png"
       },
       {
         "pagePath": "pages/MyPage/MyPage",
         "text": "我的",
-        "iconPath": "images/icons/我的.png",
-        "selectedIconPath": "images/icons/我的.png"
+        "iconPath": "images/icons/my_normal.png",
+        "selectedIconPath": "images/icons/my_selected.png"
       }
     ]
   },
