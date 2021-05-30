@@ -21,6 +21,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载问题中',
+    })
     this.setData({
       fileSource:options.filePath,
       fileType:options.fileType,
@@ -44,6 +47,9 @@ Page({
         }
         this.setData({
           questionList:temp_question,
+        })
+        wx.hideLoading({
+          success: (res) => {},
         })
       },
     })
