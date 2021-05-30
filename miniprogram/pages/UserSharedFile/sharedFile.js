@@ -54,7 +54,7 @@ Page({
   },
 
   toFileAccessUsers: function(event){
-    var idx = event.currentTarget.dataset.myindex
+    var idx = event.currentarget.dataset.myindex
     console.log(idx)
     console.log(event)
     console.log(this.data.userQuestionList[idx])
