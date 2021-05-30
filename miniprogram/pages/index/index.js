@@ -122,9 +122,11 @@ Page({
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: function (res) {
+        
         wx.showLoading({
           title: '上传中',
-        })
+        }
+        )
         const filePath = res.tempFilePaths[0]
         const fileSize = res.tempFiles[0].size
         if(_this.data.isQuestionFile==false){
@@ -133,6 +135,7 @@ Page({
           _this.doUploadQuestionFile(filePath,"image",fileSize)
         }
         // 上传图片
+        
       },
       fail: e => {
         console.error(e)
