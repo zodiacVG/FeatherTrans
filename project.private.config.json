@@ -39,7 +39,7 @@
         {
           "name": "下载问答文件界面",
           "pathName": "pages/downloadQuestionFile/downloadQuestionFile",
-          "query": "recordID=79550af260abd10019d95a431c1d2451",
+          "query": "",
           "scene": 1007
         },
         {
