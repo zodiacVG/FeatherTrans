@@ -57,6 +57,9 @@
   <van-button round type="info" bindtap="doUploadToCloud">
     <view style="width:150rpx">上传</view>
   </van-button>
+  <van-button round type="info" bindtap="previewdoc">
+    <view style="width:150rpx">文件预览</view>
+  </van-button>
 </view>
 
 <van-notify id="van-notify" />
