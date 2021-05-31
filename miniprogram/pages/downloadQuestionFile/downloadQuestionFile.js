@@ -45,6 +45,10 @@ Page({
    */
   onLoad: function (options) {
     _this = this
+    this.setData({
+      recordID: options.recordID //先随便给个测试数据跑通
+      // recordID: '79550af260aa134d19663b732d892b5e'
+    })
     wx.showLoading({
       title: '加载中',
     })
@@ -178,11 +182,17 @@ Page({
   },
   downloadFile: function(){
     _this = this
+    wx.showLoading({
+      title: '正在下载',
+    })
     wx.cloud.downloadFile({
       fileID: this.data.fileID,
       success: res => {
         this.setData({
           filePath: res.tempFilePath
+        })
+        wx.hideLoading({
+          success: (res) => {},
         })
       },
       fail(res) {

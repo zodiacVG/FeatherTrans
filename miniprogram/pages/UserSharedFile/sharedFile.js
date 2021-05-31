@@ -20,8 +20,9 @@ Page({
   onLoad: function (options) {
     _this = this
     this.setData({
-      // userID: app.globalData.openID // 理论上一开始打开第一个页面就有了但是我们现在要先调试一下先
-      userID: "oVM9D5RLJMu8C13EMPD5NsWDRfR4"
+      userID: app.globalData.openID 
+      // 理论上一开始打开第一个页面就有了但是我们现在要先调试一下先
+      // userID: "oVM9D5RLJMu8C13EMPD5NsWDRfR4"
     })
 
     db.collection('userInfo').where({

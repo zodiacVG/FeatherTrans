@@ -39,7 +39,7 @@
         {
           "name": "下载问答文件界面",
           "pathName": "pages/downloadQuestionFile/downloadQuestionFile",
-          "query": "recordID=79550af260abd10019d95a431c1d2451",
+          "query": "recordID=28ee4e3e60b3540e1e4375787d1e0b52&shareName=问答文件测试",
           "scene": 1007
         },
         {
