@@ -41,8 +41,31 @@ Page({
     .get({
       success: function(res) {
         _this.setData({
-          userQuestionList: res.data
+          userID: res.result.openid
         })
+        db.collection('userInfo').where({
+          _openid: this.data.userID
+        })
+        .get({
+          success: function(res) {
+            this.setData({
+              userInfo: res.data[0]._userInfo
+            })
+          }
+        })
+        db.collection('question_files').where({
+          _openid: this.data.userID
+        }).orderBy('uploadDate','desc')
+        .get({
+          success: function(res) {
+            _this.setData({
+              userQuestionList: res.data
+            })
+          }
+        })
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
       }
     })
   },
@@ -55,10 +78,7 @@ Page({
   },
 
   toFileAccessUsers: function(event){
-    var idx = event.currentarget.dataset.myindex
-    console.log(idx)
-    console.log(event)
-    console.log(this.data.userQuestionList[idx])
+    var idx = event.currentTarget.dataset.myindex
     wx.navigateTo({
       url: '../fileAccessUsers/fileAccessUsers?fileID='+this.data.userQuestionList[idx]._id+'&userInfo='+this.data.userID
     })

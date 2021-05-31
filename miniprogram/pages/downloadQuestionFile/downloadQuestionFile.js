@@ -47,7 +47,7 @@ Page({
     _this = this
     this.setData({
       recordID: options.recordID //先随便给个测试数据跑通
-      // recordID: '79550af260aa134d19663b732d892b5e'
+      // recordID: '79550af260abd10019d95a431c1d2451'
     })
     wx.showLoading({
       title: '加载中',
