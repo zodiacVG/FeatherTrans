@@ -4,6 +4,8 @@
     <view class="fileInfoView">
       <van-image wx:if="{{fileType=='image'}}" fit="cover" round="true" width="70" height="70" bindtap="previewImage"
         src="{{fileSource}}" />
+      <van-image wx:if="{{fileType=='file'}}" fit="cover" width="60" height="60" bindtap="previewdoc"
+        src="/images/icons/preview_doc.png" />
       <view class="fileInfoText">
         <view>
           <text class="titleText">文件大小 :</text>
@@ -56,9 +58,6 @@
 
   <van-button round type="info" bindtap="doUploadToCloud">
     <view style="width:150rpx">上传</view>
-  </van-button>
-  <van-button round type="info" bindtap="previewdoc">
-    <view style="width:150rpx">文件预览</view>
   </van-button>
 </view>
 

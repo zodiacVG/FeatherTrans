@@ -49,6 +49,10 @@
   border-radius: 25rpx;
 }
 
+.previewButton{
+  margin-top: 50rpx;
+}
+
 .passwordInput{
   margin-left: 30rpx;
 }
