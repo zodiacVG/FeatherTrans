@@ -20,9 +20,7 @@ Page({
   onLoad: function (options) {
     _this = this
     this.setData({
-      userID: app.globalData.openID 
-      // 理论上一开始打开第一个页面就有了但是我们现在要先调试一下先
-      // userID: "oVM9D5RLJMu8C13EMPD5NsWDRfR4"
+      userID: options.userID
     })
 
     db.collection('userInfo').where({
@@ -37,35 +35,12 @@ Page({
     })
     db.collection('question_files').where({
       _openid: this.data.userID
-    })
+    }).orderBy('uploadDate','desc')
     .get({
       success: function(res) {
         _this.setData({
-          userID: res.result.openid
+          userQuestionList: res.data
         })
-        db.collection('userInfo').where({
-          _openid: this.data.userID
-        })
-        .get({
-          success: function(res) {
-            this.setData({
-              userInfo: res.data[0]._userInfo
-            })
-          }
-        })
-        db.collection('question_files').where({
-          _openid: this.data.userID
-        }).orderBy('uploadDate','desc')
-        .get({
-          success: function(res) {
-            _this.setData({
-              userQuestionList: res.data
-            })
-          }
-        })
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
       }
     })
   },
@@ -78,7 +53,10 @@ Page({
   },
 
   toFileAccessUsers: function(event){
-    var idx = event.currentTarget.dataset.myindex
+    var idx = event.currentarget.dataset.myindex
+    console.log(idx)
+    console.log(event)
+    console.log(this.data.userQuestionList[idx])
     wx.navigateTo({
       url: '../fileAccessUsers/fileAccessUsers?fileID='+this.data.userQuestionList[idx]._id+'&userInfo='+this.data.userID
     })

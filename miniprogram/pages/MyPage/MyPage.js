@@ -10,10 +10,12 @@ Page({
   data: {
     logged: true,
     userInfo: '',
+    userID: ''
   },
 
   onLoad() {
     this.Login()
+    console.log('获取数据')
     _this = this
   },
 
@@ -47,6 +49,7 @@ Page({
       name: 'login',
       data: {},
       success: res => {
+        _this.data.userID = res.result.openid
         app.globalData.openid = res.result.openid
         db.collection('userInfo').where({
           _openid: res.result.openid,
@@ -59,7 +62,10 @@ Page({
               })
               return false
             } else {
+              console.log('登陆过')
+              console.log(res2)
               app.globalData.logged = true
+              console.log(_this.data)
               _this.setData({
                 logged: true,
                 userInfo:res2.data[0]._userInfo
@@ -80,7 +86,7 @@ Page({
 
   switchToSharedFile(e){
     wx.navigateTo({
-      url: '../UserSharedFile/sharedFile',
+      url: '../UserSharedFile/sharedFile?userID='+this.data.userID,
     })
   }
 })
