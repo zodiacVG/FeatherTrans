@@ -17,10 +17,7 @@
     </view>
     <view class="menuView">
       <van-button round bind:click="switchToSharedFile" class="myPageButton">
-        <view class="myPageButtonContent">已经分享的文件</view>
-      </van-button>
-      <van-button round bind:click="switchToSharedFile" class="myPageButton">
-        <view class="myPageButtonContent">联系我们</view>
+        <view class="myPageButtonContent">已经分享的问答文件</view>
       </van-button>
     </view>
   </view>
