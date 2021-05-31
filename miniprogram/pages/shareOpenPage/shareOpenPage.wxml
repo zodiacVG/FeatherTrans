@@ -5,6 +5,8 @@
     <view class="fileInfoView">
       <van-image wx:if="{{fileType=='image'}}" fit="cover" width="70" height="70" bindtap="previewImage"
         src="/images/icons/image.png" />
+        <van-image wx:if="{{fileType=='file'}}" fit="cover" width="60" height="60"
+        src="/images/icons/normal_file.jpg" />
       <view class="fileInfoText">
         <view>
           <text class="titleText">文件大小 :</text>

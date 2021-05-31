@@ -61,3 +61,7 @@
 .questionSubmitButton{
   text-align: center;
 }
+
+.previewButton{
+  margin-top: 50rpx;
+}

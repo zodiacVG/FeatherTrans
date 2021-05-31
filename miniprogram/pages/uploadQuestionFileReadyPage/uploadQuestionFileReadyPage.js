@@ -90,6 +90,21 @@ Page({
     this.setData({
       downloadDateLimit:e.detail
     })
-  }
+  },
+
+  previewdoc(){
+    
+    // let filePath = res.tempFiles[0].path; //微信临时文件路径
+    wx.openDocument({
+      filePath: this.data.fileSource,
+            showMenu: false,  //是否显示右上角菜单按钮  默认为false
+      success: function (res) {
+        console.log('打开本地文档成功')
+      },
+      fail: function(error){
+        console.log("打开本地文件失败")
+      }
+    })
+}
 
 })
