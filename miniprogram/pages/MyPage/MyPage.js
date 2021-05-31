@@ -10,6 +10,7 @@ Page({
   data: {
     logged: true,
     userInfo: '',
+    userID: ''
   },
 
   onLoad() {
@@ -47,6 +48,7 @@ Page({
       name: 'login',
       data: {},
       success: res => {
+        _this.data.userID = res.result.openid
         app.globalData.openid = res.result.openid
         db.collection('userInfo').where({
           _openid: res.result.openid,
@@ -80,7 +82,7 @@ Page({
 
   switchToSharedFile(e){
     wx.navigateTo({
-      url: '../UserSharedFile/sharedFile',
+      url: '../UserSharedFile/sharedFile?userID='+this.data.userID,
     })
   }
 })
