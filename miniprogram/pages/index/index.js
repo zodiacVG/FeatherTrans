@@ -85,6 +85,7 @@ Page({
       name: 'login',
       data: {},
       success: res => {
+        console.log(res)
         app.globalData.openid = res.result.openid
       },
       fail: err => {

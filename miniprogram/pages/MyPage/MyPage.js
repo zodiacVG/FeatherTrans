@@ -49,6 +49,7 @@ Page({
       name: 'login',
       data: {},
       success: res => {
+        console.log(res)
         _this.data.userID = res.result.openid
         app.globalData.openid = res.result.openid
         db.collection('userInfo').where({

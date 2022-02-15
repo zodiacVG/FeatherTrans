@@ -2,7 +2,7 @@
 import Notify from '@vant/weapp/notify/notify'
 
 const db=wx.cloud.database()
-const todos=db.collection('files')
+const todos=db.collection('file')
 var _this=null
 
 Page({

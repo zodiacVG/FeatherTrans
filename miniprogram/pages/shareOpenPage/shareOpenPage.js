@@ -1,6 +1,6 @@
 // miniprogram/pages/shareOpenPage/shareOpenPage.js
 const db = wx.cloud.database()
-const todos = db.collection('files')
+const todos = db.collection('file')
 var _this = null
 const app = getApp()
 const oneDay = 24 * 60 * 60 * 1000
