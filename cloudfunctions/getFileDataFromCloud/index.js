@@ -9,7 +9,7 @@ cloud.init({
 exports.main = async (event, context) => {
   var fileData="我是存在的"
   const db = cloud.database()
-  const todos = db.collection('files')
+  const todos = db.collection('file')
   const wxContext = cloud.getWXContext()
 
   return todos.doc(event.recordID).get({ //云数据库里获取文件数据

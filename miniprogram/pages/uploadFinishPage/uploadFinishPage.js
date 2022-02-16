@@ -45,6 +45,7 @@ Page({
     wx.showLoading({
       title: '正在生成',
     })
+    console.log("准备调用生成二维码的函数")
     wx.cloud.callFunction({
       name: "createQRCode",
       data: {

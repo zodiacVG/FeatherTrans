@@ -103,7 +103,7 @@ Page({
           fileID:res.fileID
         })
         const db=wx.cloud.database()
-        const todos=db.collection('question_files')
+        const todos=db.collection('question_file')
         todos.add({
           data:{
             shareName:_this.data.shareName,

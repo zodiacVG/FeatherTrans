@@ -1,6 +1,6 @@
 // miniprogram/pages/shareOpenPage/shareOpenPage.js
 const db = wx.cloud.database()
-const todos = db.collection('question_files')
+const todos = db.collection('question_file')
 var _this = null
 const app = getApp()
 const oneDay = 24 * 60 * 60 * 1000
@@ -176,7 +176,7 @@ Page({
       userTotalNum: total_num
     }
     this.data.accessUsersList.push(access_item)
-    db.collection('question_files').doc(this.data.recordID).update({
+    db.collection('question_file').doc(this.data.recordID).update({
       data: {
         accessUsersList: this.data.accessUsersList
       },

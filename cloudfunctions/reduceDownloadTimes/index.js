@@ -8,7 +8,7 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const db = cloud.database()
   const _=db.command
-  const todos = db.collection('files')
+  const todos = db.collection('file')
 
   return todos.doc(event.recordID).update({
     data:{ //！注意不要忘记这个地方 一开始忘了加data

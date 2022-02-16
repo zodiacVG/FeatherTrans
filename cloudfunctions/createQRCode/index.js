@@ -1,9 +1,8 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
 
-cloud.init()
+cloud.init({env:'yunpan-q8fv9'})
 const log = cloud.logger()
-
 const uploadFile = async function(arrayBuffer,path) {
   let {fileID} = await cloud.uploadFile({
     cloudPath: path,
@@ -14,6 +13,7 @@ const uploadFile = async function(arrayBuffer,path) {
 
 // 云函数入口函数
 exports.main = async(event, context) => {
+  console.log('调用了云函数创建二维码2')
   const wxContext = cloud.getWXContext()
   var type = event.type
   var shareType = event.shareType
@@ -21,6 +21,7 @@ exports.main = async(event, context) => {
   var my_filePath = ''
   if(shareType=='normal'){
     my_filePath = 'pages/shareOpenPage/shareOpenPage?recordID='
+    console.log("filepath是"+my_filePath)
   }
   else{
     my_filePath = 'pages/downloadQuestionFile/downloadQuestionFile?recordID='
@@ -35,6 +36,7 @@ exports.main = async(event, context) => {
           width: 430
         })
         fileID = await uploadFile(buffer,recordID+".jpg")    
+        console.log("fileID is"+fileID)
         return fileID
       } catch (err) {
         log.error({

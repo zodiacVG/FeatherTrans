@@ -33,7 +33,7 @@ Page({
         })
       }
     })
-    db.collection('question_files').where({
+    db.collection('question_file').where({
       _openid: this.data.userID
     }).orderBy('uploadDate','desc')
     .get({

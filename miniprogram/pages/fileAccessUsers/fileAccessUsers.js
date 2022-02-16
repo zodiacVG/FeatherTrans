@@ -34,7 +34,7 @@ Page({
         })
       }
     })
-    db.collection('question_files').where({
+    db.collection('question_file').where({
       _id: this.data.fileID
     })
     .get({
