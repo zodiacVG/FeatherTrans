@@ -2,6 +2,7 @@
 const app = getApp()
 var _this
 let that = this;
+// satr皆空
 
 Page({
   data: {

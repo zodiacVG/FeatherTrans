@@ -9,7 +9,7 @@ cloud.init({
 exports.main = async (event, context) => {
   const db = cloud.database()
   const question_num = parseInt(event.question_num)
-  return db.collection('questions').aggregate().sample({
+  return db.collection('question').aggregate().sample({
     size:question_num
   }).end()
 }
