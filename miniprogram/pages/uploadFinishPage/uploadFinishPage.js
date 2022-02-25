@@ -38,8 +38,8 @@ Page({
         path: '/pages/downloadQuestionFile/downloadQuestionFile?recordID=' + this.data.recordID
       }
     }
-
   },
+  
   createQRCode() {
     _this = this
     wx.showLoading({

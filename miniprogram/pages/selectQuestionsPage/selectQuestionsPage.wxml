@@ -5,10 +5,12 @@
   <view class="questionShowView" wx:for="{{ questionList }}" wx:for-index="idx" wx:for-item="itemName">
     <van-tag class="questionTag" mark type="primary">问题{{ idx+1 }}：</van-tag>
     <van-tag mark type="primary">{{ itemName.question }}</van-tag>
-    <van-radio-group class="answersView" value="{{ itemName.radio}}" bind:change="onChange" data-idx="{{idx}}">
-      <van-radio name="{{ answer_idx+1 }}" wx:for="{{ itemName.options }}" wx:for-index="answer_idx"
-        wx:for-item="answer_name">{{ answer_name }}</van-radio>
-    </van-radio-group>
+    <view class="answersView">
+      <van-radio-group value="{{ itemName.radio}}" bind:change="onChange" data-idx="{{idx}}">
+        <van-radio name="{{ answer_idx+1 }}" wx:for="{{ itemName.options }}" wx:for-index="answer_idx"
+          wx:for-item="answer_name">{{ answer_name }}</van-radio>
+      </van-radio-group>
+    </view>
   </view>
   <view class="buttonView">
     <van-button round type="info" bind:click="confirmSubmit">确定提交</van-button>

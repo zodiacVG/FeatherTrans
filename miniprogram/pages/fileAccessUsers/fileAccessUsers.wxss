@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+.noFileTip{
+  margin-top: 20rpx;
+}
+
 .shareInfoView{
   width: 640rpx;
   border-radius: 5px;
@@ -34,6 +38,7 @@
 }
 
 .littleTitle{
+  margin-right: 10px;
   font-size: 20rpx;
   color: gray;
 }

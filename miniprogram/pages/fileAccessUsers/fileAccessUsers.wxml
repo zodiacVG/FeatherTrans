@@ -1,5 +1,8 @@
 <!--miniprogram/pages/fileAccessUsers/fileAccessUsers.wxml-->
 <view class="bodyContainer">
+  <view class="noFileTip" wx:if="{{!accessUsersList[0]}}">
+    此文件还没有人打开过
+  </view>
   <view class="shareInfoView" wx:for="{{ accessUsersList }}" wx:key="idx" wx:for-index="idx" wx:for-item="UserItem">
     <view class="userInfoView">
       <van-image width="100rpx" height="100rpx" src="{{UserItem.userInfo.avatarUrl}}" />

@@ -18,7 +18,7 @@
 }
 
 .answersView{
-  margin-top:10rpx
+  margin-top:20rpx
 }
 
 .buttonView{

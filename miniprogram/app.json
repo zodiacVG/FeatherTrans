@@ -19,7 +19,8 @@
     "van-radio": "@vant/weapp/radio/index",
     "van-radio-group": "@vant/weapp/radio-group/index",
     "van-popup": "@vant/weapp/popup/index",
-    "van-notify": "@vant/weapp/notify/index"
+    "van-notify": "@vant/weapp/notify/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index"
   },
   "pages": [
     "pages/index/index",
@@ -34,6 +35,9 @@
     "pages/fileAccessUsers/fileAccessUsers"
   ],
   "tabBar": {
+    "selectedColor": "#00BFFF",
+    "backgroundColor": "white",
+    "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/index/index",

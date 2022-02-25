@@ -10,4 +10,7 @@
     <van-button id="firstButton" round type="info" open-type="share">分享给朋友</van-button>
     <van-button id="secondButton" round type="info" bind:click="createQRCode">生成二维码</van-button>
   </view>
+  <view class="ShareTips">
+    <van-icon name="volume" size="50rpx" color="#1989FA"/><text style="margin-left:10rpx">如果需要多次分享，请保存二维码</text>
+  </view>
 </view>

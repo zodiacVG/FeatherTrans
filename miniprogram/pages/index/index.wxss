@@ -31,7 +31,7 @@ page {
 
 .shadowBox{
   border-radius: 25px;
-  background-color:white;
+  background-color:#F6F6F6;
   padding-top: 25px;
   padding-bottom: 150px;
   position: fixed;

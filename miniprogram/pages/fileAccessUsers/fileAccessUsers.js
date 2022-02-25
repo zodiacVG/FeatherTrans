@@ -101,5 +101,5 @@ Page({
         console.log(err);
       }
     })
-  }
+  },
 })

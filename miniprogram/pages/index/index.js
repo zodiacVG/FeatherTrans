@@ -3,7 +3,7 @@ const app = getApp()
 var _this
 let that = this;
 // satr皆空
-
+// vue
 Page({
   data: {
     height:0,
